@@ -13,6 +13,26 @@ class Config(object):
     TETING = False
     SECRET_KEY = os.getenv("SECRET_KEY")
 
+    # Celery Configuration
+    CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+    CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+    CELERY_ACCEPT_CONTENT = ["json"]
+    CELERY_TASK_SERIALIZER = "json"
+    CELERY_RESULT_SERIALIZER = "json"
+    CELERY_REDIS_MAX_CONNECTIONS = 5
+
+    # Flask Mail Configuration
+    MAIL_SERVER = os.getenv("MAIL_SERVER")
+    MAIL_PORT = os.getenv("MAIL_PORT")
+    MAIL_USE_TLS = os.getenv("MAIL_USE_TLS")
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER")
+
+    # SQLAlchemy Configuration
+
+    # Flask Login Configuration
+
 
 class ProductionConfig(Config):
     """ Production environment configuration class. """

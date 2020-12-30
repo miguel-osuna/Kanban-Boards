@@ -1,0 +1,39 @@
+# --- General ---
+# celery
+# redis
+# Click
+# Werkzeug
+# Flask
+
+# --- Deployment ---
+# gunicorn
+
+# --- Database ---
+# Flask-SQLAlchemy
+# SQLAlchemy
+# psycopg2
+
+# --- Migrations ---
+# Flask-Migrate
+
+# --- Forms ---
+# email-validator
+# Flask-WTF
+# WTForms
+# WTForms-Components
+
+# --- Auth ---
+# Flask-Login
+# Flask-Bcrypt
+
+# --- Caching ---
+# Flask-Caching 
+
+# --- Debug Toolbar ----
+# Flask-DebugToolbar
+
+# --- Mail ---
+# Flask-Mail
+
+# --- Static Digest ---
+# Flask-Static-Digest

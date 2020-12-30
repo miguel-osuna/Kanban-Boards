@@ -2,6 +2,7 @@ version: "3"
 
 volumes:
   local_postgres_data: {}
+  local_redis_data: {}
 
 services:
   application: &application
@@ -17,28 +18,39 @@ services:
     env_file:
       - ./.envs/.local/.application
       - ./.envs/.local/.postgres
+      - ./.envs/.local/.celery
     ports:
       - "8000:8000"
     commands: /start
 
   postgres:
-    image: postgres:11
+    image: postgres:12.3
     container_name: postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.envs/.local/.postgres
+    ports:
+      - "5432:5432"
 
   redis:
-    image: redis:5.0
+    image: redis:6.0.5-buster
     container_name: redis
+    volumes:
+      - local_redis_data:/var/lib/redis/data
+    ports:
+      - "6379:6379"
 
   celeryworker:
+    # The celery worker container uses the same dockerfile as the application,
+    # because it's already listed as a dependency
     <<: *application
     image: job_boards_local_celeryworker
     container_name: celeryworker
     depends_on:
       - redis
       - postgres
+    env_file:
+      - ./.envs/.local/.celery
     ports: []
     commands: /start-celeryworker

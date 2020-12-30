@@ -1,28 +1,28 @@
 -r base.txt
 
-Werkzeug
-ipdb
-bpython
-psycopg2 
+# --- Debugging ---
+# ipdb
+# bpython
 
-# Testing
-mypy
-pytest
-pytest-sugar
-pytest-cov
-pytest-runner
-pytest-factoryboy
-factory-boy
+# --- Testing ---
+# mypy 
+# pytest
+# pytest-sugar
+# pytest-cov
+# pytest-runner
+# pytest-factoryboy
+# factory-boy
 
-# Documentation
-sphinx
-sphinx-autobuild
+#  --- Documentation ---
+# sphinx
+# sphinx-autobuild
 
-# Code Quality
-flake8
-flake8-isort
-coverage
-black
-pylint
-pre-commit
+# --- Code Quality ---
+# flake8
+# flake8-isort
+# coverage
+# black
+# pylint
+# pre-commit
 
+# --- Flask Extensions ---
