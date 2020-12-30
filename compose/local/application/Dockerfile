@@ -8,22 +8,21 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Python buffered gives familiar output to console
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
-WORKDIR /app 
-
 # Install dependencies
-COPY Pipfile /app/
+COPY ./requirements /requirements
+RUN pip install -r /requirements/local.txt
 
-# 'system' flag will avoid pipenv to look for a virtual environment
-RUN pip install pipenv
-
-# Install dependencies
-RUN pipenv install --skip-lock --system && pipenv install --skip-lock --system --dev
-
-# Copy start bash script ahd change permissions
+# Copy start bash scripts and change permissions
 COPY ./compose/local/application/start /start
 RUN sed -i 's/\r$//g' /start 
 RUN chmod +x /start 
+
+COPY ./compose/local/application/celery/worker/start /start-celeryworker
+RUN sed -i 's/\r$//g' /start-celeryworker
+RUN chmod +x /start-celeryworker
+
+# Set work directory
+WORKDIR /app 
 
 # COPY project 
 COPY . /app/

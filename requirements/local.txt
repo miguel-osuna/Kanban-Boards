@@ -1,0 +1,28 @@
+-r base.txt
+
+Werkzeug
+ipdb
+bpython
+psycopg2 
+
+# Testing
+mypy
+pytest
+pytest-sugar
+pytest-cov
+pytest-runner
+pytest-factoryboy
+factory-boy
+
+# Documentation
+sphinx
+sphinx-autobuild
+
+# Code Quality
+flake8
+flake8-isort
+coverage
+black
+pylint
+pre-commit
+

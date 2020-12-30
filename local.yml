@@ -1,0 +1,44 @@
+version: "3"
+
+volumes:
+  local_postgres_data: {}
+
+services:
+  application: &application
+    build:
+      context: .
+      dockerfile: ./compose/local/application/Dockerfile
+    image: job_boards_local_application
+    containername: job_boards
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.local/.application
+      - ./.envs/.local/.postgres
+    ports:
+      - "8000:8000"
+    commands: /start
+
+  postgres:
+    image: postgres:11
+    container_name: postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.local/.postgres
+
+  redis:
+    image: redis:5.0
+    container_name: redis
+
+  celeryworker:
+    <<: *application
+    image: job_boards_local_celeryworker
+    container_name: celeryworker
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    commands: /start-celeryworker
