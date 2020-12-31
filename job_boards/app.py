@@ -2,7 +2,9 @@ import os
 from flask import Flask
 from celery import Celery
 
-from job_boards.settings import app_config
+from config.settings import app_config
+
+CELERY_TASK_LIST = []
 
 
 def create_celery_app(app=None):
@@ -15,6 +17,7 @@ def create_celery_app(app=None):
         app.import_name,
         broker=app.config["CELERY_BROKER_URL"],
         backend=app.config["CELERY_RESULT_BACKEND"],
+        include=CELERY_TASK_LIST,
     )
     celery.conf.update(app.config)
 
@@ -37,6 +40,9 @@ def create_app(configuration="production"):
 
     # Setup app configuration from configuration object
     app.config.from_object(app_config[configuration])
+
+    # Set logger level
+    app.logger.setLevel(app.config["LOG_LEVEL"])
 
     @app.route("/")
     def index():
