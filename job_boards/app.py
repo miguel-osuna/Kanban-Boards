@@ -50,7 +50,8 @@ def create_app(configuration="production"):
 
     register_extensions(app)
     register_blueprints(app)
-    register_error_handlers(app)
+    register_error_templates(app)
+    register_logger_exception_handler(app)
     register_shell_context(app)
     register_commands(app)
 
@@ -65,7 +66,12 @@ def register_blueprints(app):
     return None
 
 
-def register_error_handlers(app):
+def register_error_templates(app):
+    return None
+
+
+def register_logger_exception_handler(app):
+    """ Flask will not send emails when Debug is set to True. """
     return None
 
 
