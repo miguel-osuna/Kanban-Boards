@@ -54,3 +54,17 @@ services:
       - ./.envs/.local/.celery
     ports: []
     commands: /start-celeryworker
+
+  celerybeat:
+    # The celery beat container uses the same dockerfile as the application,
+    # because it's already listed as a dependency
+    <<: *application
+    image: job_boards_local_celerybeat
+    container_name: celerybeat
+    depends_on:
+      - redis
+      - postgres
+    env_file:
+      - ./.envs/.local/.celery
+    ports: []
+    commands: /start-celerybeat
