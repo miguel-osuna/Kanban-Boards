@@ -36,7 +36,7 @@ def create_app(configuration="production"):
     """ Application factory, used to create an application. """
 
     # Create Flask application
-    app = Flask("job_boards")
+    app = Flask("job_boards", static_folder="../public", static_url_path="")
 
     # Setup app configuration from configuration object
     app.config.from_object(app_config[configuration])

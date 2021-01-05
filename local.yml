@@ -24,7 +24,7 @@ services:
     commands: /start
 
   postgres:
-    image: postgres:12.3
+    image: postgres:13.1
     container_name: postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
@@ -34,7 +34,7 @@ services:
       - "5432:5432"
 
   redis:
-    image: redis:6.0.5-buster
+    image: redis:6.0.9-buster
     container_name: redis
     volumes:
       - local_redis_data:/var/lib/redis/data

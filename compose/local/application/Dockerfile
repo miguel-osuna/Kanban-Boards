@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:3.8-slim-buster
+FROM python:3.8.7-slim-buster
 LABEL maintainer="Miguel Osuna <osuna.angulo.miguel@gmail.com>"
 
 # Set environment variables 

@@ -1,39 +1,41 @@
 # --- General ---
-# celery
-# redis
-# Click
-# Werkzeug
-# Flask
+# celery==5.0.5
+# redis==3.5.3
+# Werkzeug==1.0.1
+# Flask==1.1.2
 
 # --- Deployment ---
-# gunicorn
+# gunicorn==20.0.4
 
 # --- Database ---
-# Flask-SQLAlchemy
-# SQLAlchemy
-# psycopg2
+# Flask-SQLAlchemy==2.4.4
+# SQLAlchemy==1.3.22
+# psycopg2-binary==2.8.6
 
 # --- Migrations ---
-# Flask-Migrate
+# Flask-Migrate==2.5.3
 
 # --- Forms ---
-# email-validator
-# Flask-WTF
-# WTForms
-# WTForms-Components
+# email-validator==Maybe?
+# Flask-WTF==0.14.3
+# WTForms==2.3.3
+# WTForms-Components==0.10.4
 
 # --- Auth ---
-# Flask-Login
-# Flask-Bcrypt
+# Flask-Login==0.5.0
+# Flask-Bcrypt==Maybe?
 
 # --- Caching ---
-# Flask-Caching 
+# Flask-Caching==1.9.0
 
 # --- Debug Toolbar ----
-# Flask-DebugToolbar
+# Flask-DebugToolbar==0.11.0
 
 # --- Mail ---
-# Flask-Mail
+# Flask-Mail==0.9.1
 
 # --- Static Digest ---
-# Flask-Static-Digest
+# Flask-Static-Digest==0.2.1
+
+# --- Payment ---
+
