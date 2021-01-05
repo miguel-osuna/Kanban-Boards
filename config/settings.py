@@ -12,7 +12,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.getenv("SECRET_KEY")
-    LOG_LEVEL = "WARNING"
+    LOG_LEVEL = os.getenv("LOG_LEVEL")
 
     # Celery Configuration
     CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
@@ -48,7 +48,9 @@ class DevelopmentConfig(Config):
     # Flask Configuration
     ENV = "development"
     DEBUG = True
-    LOG_LEVEL = "DEBUG"
+
+    # Werkzeug Configuration
+    WERKZEUG_DEBUG_PIN = "off"
 
 
 class TestingConfig(Config):
@@ -57,9 +59,11 @@ class TestingConfig(Config):
     # Flask Configuration
     ENV = "development"
     DEBUG = True
-    LOG_LEVEL = "DEBUG"
     TESTING = True
     SECRET_KEY = "testing"
+
+    # Werkzeug Configuration
+    WERKZEUG_DEBUG_PIN = "off"
 
 
 # App configuration dictionary
