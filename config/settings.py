@@ -11,9 +11,9 @@ class Config(object):
     # Flask Configuration
     DEBUG = False
     TESTING = False
-    SECRET_KEY = os.getenv("SECRET_KEY")
+    SECRET_KEY = os.getenv("SECRET_KEY", None)
     LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
-    SERVER_NAME = os.getenv("SERVER_NAME")
+    SERVER_NAME = os.getenv("SERVER_NAME", None)
 
     # Celery Configuration
     CELERY_TASK_LIST = []

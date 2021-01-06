@@ -64,3 +64,16 @@ services:
       - postgres
     ports: []
     command: /start-celerybeat.sh
+
+  flower:
+    # The flower container uses the same dockerfile as the application,
+    # because it's already listed as a dependency
+    <<: *application
+    image: job_boards_local_flower
+    container_name: flower
+    depends_on:
+      - redis
+      - postgres
+    ports:
+      - "5555:5555"
+    command: /start-flower.sh

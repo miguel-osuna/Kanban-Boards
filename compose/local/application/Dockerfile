@@ -3,9 +3,8 @@ FROM python:3.8.7-slim-buster
 LABEL maintainer="Miguel Osuna <osuna.angulo.miguel@gmail.com>"
 
 # Set environment variables 
-# Python don't write byte code: it won't write .pyc files 
+# Python won't write .pyc files 
 ENV PYTHONDONTWRITEBYTECODE 1
-
 # Python buffered gives familiar output to console
 ENV PYTHONUNBUFFERED 1
 
@@ -22,12 +21,12 @@ RUN apt-get update \
     && rm -rf /usr/share/doc \ 
     && rm -rf /usr/share/man
 
-# Install dependencies
+# Install dependencies and remove the requirements folder when done
 COPY ./requirements /requirements
 RUN pip install -r /requirements/local.txt \
     && rm -rf /requirements
 
-# Copy start bash scripts and change permissions
+# Copy the start bash scripts and change their permissions
 COPY ./compose/local/application/start.sh /start.sh
 RUN sed -i 's/\r$//g' /start.sh
 RUN chmod +x /start.sh
@@ -39,6 +38,10 @@ RUN chmod +x /start-celeryworker.sh
 COPY ./compose/local/application/celery/beat/start.sh /start-celerybeat.sh
 RUN sed -i 's/\r$//g' /start-celerybeat.sh
 RUN chmod +x /start-celerybeat.sh
+
+COPY ./compose/local/application/celery/flower/start.sh /start-flower.sh
+RUN sed -i 's/\r$//g' /start-flower.sh
+RUN chmod +x /start-flower.sh
 
 # Set work directory
 WORKDIR /app 
