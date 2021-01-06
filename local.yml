@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./compose/local/application/Dockerfile
     image: job_boards_local_application
-    containername: job_boards
+    container_name: job_boards
     depends_on:
       - postgres
     volumes:
@@ -21,7 +21,7 @@ services:
       - ./.envs/.local/.celery
     ports:
       - "8000:8000"
-    commands: /start
+    command: /start.sh
 
   postgres:
     image: postgres:13.1
@@ -50,10 +50,8 @@ services:
     depends_on:
       - redis
       - postgres
-    env_file:
-      - ./.envs/.local/.celery
     ports: []
-    commands: /start-celeryworker
+    command: /start-celeryworker.sh
 
   celerybeat:
     # The celery beat container uses the same dockerfile as the application,
@@ -64,7 +62,5 @@ services:
     depends_on:
       - redis
       - postgres
-    env_file:
-      - ./.envs/.local/.celery
     ports: []
-    commands: /start-celerybeat
+    command: /start-celerybeat.sh

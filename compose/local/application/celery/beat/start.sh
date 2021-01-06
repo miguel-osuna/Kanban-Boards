@@ -4,4 +4,4 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-gunicorn -c python:config.gunicorn wsgi:app --access-logfile
+celery --app=job_boards.celery_app:app beat --loglevel=info

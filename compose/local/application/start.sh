@@ -4,4 +4,4 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-celery beat -A job_boards.app worker -l INFO
+gunicorn --config python:config.gunicorn wsgi:app

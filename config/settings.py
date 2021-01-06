@@ -12,15 +12,24 @@ class Config(object):
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.getenv("SECRET_KEY")
-    LOG_LEVEL = os.getenv("LOG_LEVEL")
+    LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
+    SERVER_NAME = os.getenv("SERVER_NAME")
 
     # Celery Configuration
-    CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-    CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
-    CELERY_ACCEPT_CONTENT = ["json"]
-    CELERY_TASK_SERIALIZER = "json"
-    CELERY_RESULT_SERIALIZER = "json"
-    CELERY_REDIS_MAX_CONNECTIONS = 5
+    CELERY_TASK_LIST = []
+    CELERYBEAT_SCHEDULE = {}
+    CELERY = {
+        "broker_url": os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0"),
+        "result_backend": os.getenv(
+            "CELERY_RESULT_BACKEND", "redis://localhost:6379/0"
+        ),
+        "accept_content": ["json"],
+        "task_serializer": "json",
+        "result_serializer": "json",
+        "redis_max_connections": 5,
+        "include": CELERY_TASK_LIST,
+        "beat_schedule": CELERYBEAT_SCHEDULE,
+    }
 
     # Flask Mail Configuration
     MAIL_SERVER = os.getenv("MAIL_SERVER")
@@ -48,6 +57,7 @@ class DevelopmentConfig(Config):
     # Flask Configuration
     ENV = "development"
     DEBUG = True
+    TESTING = True
 
     # Werkzeug Configuration
     WERKZEUG_DEBUG_PIN = "off"

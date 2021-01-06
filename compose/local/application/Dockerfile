@@ -20,24 +20,25 @@ RUN apt-get update \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/* \ 
     && rm -rf /usr/share/doc \ 
-    && rm -rf /usr/share/man \
+    && rm -rf /usr/share/man
 
-    # Install dependencies
-    COPY ./requirements /requirements
-RUN pip install -r /requirements/local.txt
+# Install dependencies
+COPY ./requirements /requirements
+RUN pip install -r /requirements/local.txt \
+    && rm -rf /requirements
 
 # Copy start bash scripts and change permissions
-COPY ./compose/local/application/start /start
-RUN sed -i 's/\r$//g' /start 
-RUN chmod +x /start 
+COPY ./compose/local/application/start.sh /start.sh
+RUN sed -i 's/\r$//g' /start.sh
+RUN chmod +x /start.sh
 
-COPY ./compose/local/application/celery/worker/start /start-celeryworker
-RUN sed -i 's/\r$//g' /start-celeryworker
-RUN chmod +x /start-celeryworker
+COPY ./compose/local/application/celery/worker/start.sh /start-celeryworker.sh
+RUN sed -i 's/\r$//g' /start-celeryworker.sh
+RUN chmod +x /start-celeryworker.sh
 
-COPY ./compose/local/application/celery/beat/start /start-celerybeat
-RUN sed -i 's/\r$//g' /start-celerybeat
-RUN chmod +x /start-celerybeat
+COPY ./compose/local/application/celery/beat/start.sh /start-celerybeat.sh
+RUN sed -i 's/\r$//g' /start-celerybeat.sh
+RUN chmod +x /start-celerybeat.sh
 
 # Set work directory
 WORKDIR /app 

@@ -1,35 +1,8 @@
 import os
 from flask import Flask
-from celery import Celery
 
 from config.settings import app_config
-
-CELERY_TASK_LIST = []
-
-
-def create_celery_app(app=None):
-    """ Create a new Celery instance and tie together the Celery config to the
-    app's config. Wrap all tasks in the context of the application. 
-    """
-    app = app or create_app()
-
-    celery = Celery(
-        app.import_name,
-        broker=app.config["CELERY_BROKER_URL"],
-        backend=app.config["CELERY_RESULT_BACKEND"],
-        include=CELERY_TASK_LIST,
-    )
-    celery.conf.update(app.config)
-
-    class ContextTask(celery.Task):
-        abstract = True
-
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return self.run(*args, **kwargs)
-
-    celery.Task = ContextTask
-    return celery
+from job_boards.extensions import celery
 
 
 def create_app(configuration="production"):
@@ -54,6 +27,7 @@ def create_app(configuration="production"):
     register_logger_exception_handler(app)
     register_shell_context(app)
     register_commands(app)
+    init_celery(app)
 
     return app
 
@@ -82,3 +56,20 @@ def register_shell_context(app):
 def register_commands(app):
     return None
 
+
+def init_celery(app=None):
+    """ Configures a celery app and wraps all tasks in the context application. """
+    app = app or create_app()
+    celery.conf.update(app.config.get("CELERY", {}))
+
+    class ContextTask(celery.Task):
+        """ Make celery tasks work with Flask app context. """
+
+        abstract = True
+
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    return celery
