@@ -4,6 +4,8 @@ Environment Configuration
 
 import os
 
+from distutils.util import strtobool
+
 
 class Config(object):
     """ Configuration base class. """
@@ -32,12 +34,13 @@ class Config(object):
     }
 
     # Flask Mail Configuration
-    MAIL_SERVER = os.getenv("MAIL_SERVER")
-    MAIL_PORT = os.getenv("MAIL_PORT")
-    MAIL_USE_TLS = os.getenv("MAIL_USE_TLS")
-    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
-    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
-    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER")
+    MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
+    MAIL_PORT = os.getenv("MAIL_PORT", 587)
+    MAIL_USE_TLS = bool(strtobool(os.getenv("MAIL_USE_TLS", "true")))
+    MAIL_USE_SSL = bool(strtobool(os.getenv("MAIL_USE_SSL", "false")))
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME", None)
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD", None)
+    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER", "no-reply@email.com")
 
     # SQLAlchemy Configuration
 
