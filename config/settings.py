@@ -18,7 +18,9 @@ class Config(object):
     SERVER_NAME = os.getenv("SERVER_NAME", None)
 
     # Celery Configuration
-    CELERY_TASK_LIST = []
+    CELERY_TASK_LIST = [
+        "job_boards.blueprints.contact.tasks",
+    ]
     CELERYBEAT_SCHEDULE = {}
     CELERY = {
         "broker_url": os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0"),
@@ -40,7 +42,16 @@ class Config(object):
     MAIL_USE_SSL = bool(strtobool(os.getenv("MAIL_USE_SSL", "false")))
     MAIL_USERNAME = os.getenv("MAIL_USERNAME", None)
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD", None)
-    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER", "no-reply@email.com")
+    MAIL_DEFAULT_SENDER = (
+        "Tides",
+        os.getenv("MAIL_DEFAULT_SENDER", "no-reply@email.com"),
+    )
+
+    # Flask-WTF Configuration
+    RECAPTCHA_USER_SSL = bool(strtobool(os.getenv("RECAPTCHA_USER_SSL", "false")))
+    RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY", None)
+    RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY", None)
+    RECAPTCHA_DATA_ATTRS = {"theme": "light", "size": "normal"}
 
     # SQLAlchemy Configuration
 
@@ -60,7 +71,6 @@ class DevelopmentConfig(Config):
     # Flask Configuration
     ENV = "development"
     DEBUG = True
-    TESTING = True
 
     # Werkzeug Configuration
     WERKZEUG_DEBUG_PIN = "off"

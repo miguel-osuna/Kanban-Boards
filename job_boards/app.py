@@ -8,7 +8,7 @@ from werkzeug.debug import DebuggedApplication
 from config.settings import app_config
 
 # Blueprint imports
-from job_boards.blueprints.page import page
+from job_boards.blueprints import page, contact
 
 # Extension imports
 from job_boards.extensions import (
@@ -82,6 +82,7 @@ def register_blueprints(app):
     """
 
     app.register_blueprint(page)
+    app.register_blueprint(contact)
     return None
 
 

@@ -20,6 +20,7 @@ Flask-Migrate==2.5.3 # https://github.com/miguelgrinberg/Flask-Migrate
 Flask-WTF==0.14.3 # https://github.com/lepture/flask-wtf
 WTForms==2.3.3 # https://github.com/wtforms/wtforms
 WTForms-Components==0.10.4 # https://github.com/kvesteri/wtforms-components
+WTForms-Alchemy==0.17.0 # https://github.com/kvesteri/wtforms-alchemy
 
 # --- Auth ---
 Flask-Login==0.5.0 # https://github.com/maxcountryman/flask-login

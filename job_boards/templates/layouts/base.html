@@ -1,3 +1,5 @@
+{% import "macros/flash.html" as flash with context %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,9 +23,18 @@
   <body>
     <header>{% block header %}{% endblock %}</header>
 
-    <main>{% block body %}{% endblock %}</main>
+    <main class="container mb-5">{{ flash.render() }}{% block body %}{% endblock %}</main>
 
-    <footer>{% block footer %}{% endblock %}</footer>
+    <footer class="footer text-center">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="list-inline-item text-muted">
+            Tides &copy; Current Year
+          </li>
+          {% block footer %}{% endblock %}
+        </ul>
+      </div>
+    </footer>
 
     <!-- Bootstrap JS-->
     <script
