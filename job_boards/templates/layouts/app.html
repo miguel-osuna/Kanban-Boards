@@ -1,9 +1,10 @@
-{% extends 'layouts/base.html' %} {% block header %}
+{% extends 'layouts/base.html' %} 
 
+{% block header %}
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src={{ url_for("static", filename="images/tides.png") }}
-    class="img-fluid" alt="Tides" title="Tides" /> Tides
+    class="img-fluid" alt="Tides" title="Tides" width="30" height="30" />
   </a>
   <button
     class="navbar-toggler"
@@ -19,17 +20,38 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for("page.home") }}">Home</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
+    </ul>
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="#">Log In</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Sign Up</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+           href="#" class
+           id="navbarDropdown"
+           role="button"
+           data-toggle="dropdown"
+           aria-hashpopup="true"
+           aria-expanded="false"
+        >
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledb="navbarDropdown">
+          <a class="dropdown-item" href="#">Users</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Coupons</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Invoices</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a
@@ -52,4 +74,16 @@
     </ul>
   </div>
 </nav>
-{% endblock %} {% block footer %} {% endblock footer %}
+{% endblock %} 
+
+{% block footer %}
+<li class="list-inline-item">
+  <a href="{{ url_for('contact.index') }}">Contact</a>
+</li>
+<li class="list-inline-item">
+  <a href="{{ url_for('page.privacy') }}">Privacy Policy</a>
+</li>
+<li class="list-inline-item">
+  <a href="{{ url_for('page.terms') }}">Terms of Service</a>
+</li>
+{% endblock footer %}
