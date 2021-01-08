@@ -19,7 +19,7 @@ class Config(object):
 
     # Celery Configuration
     CELERY_TASK_LIST = [
-        "job_boards.blueprints.contact.tasks",
+        "kanban_boards.blueprints.contact.tasks",
     ]
     CELERYBEAT_SCHEDULE = {}
     CELERY = {
@@ -35,7 +35,7 @@ class Config(object):
         "beat_schedule": CELERYBEAT_SCHEDULE,
     }
 
-    # Flask Mail Configuration 
+    # Flask Mail Configuration
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = os.getenv("MAIL_PORT", 587)
     MAIL_USE_TLS = bool(strtobool(os.getenv("MAIL_USE_TLS", "true")))

@@ -6,8 +6,8 @@ from wtforms_components import EmailField, Email
 
 from config.settings import Config
 from lib.util_wtforms import ModelForm, choices_from_dict
-from job_boards.blueprints.user.models import User
-from job_boards.blueprints.user.validations import (
+from kanban_boards.blueprints.user.models import User
+from kanban_boards.blueprints.user.validations import (
     ensure_identity_exists,
     ensure_existing_password_matches,
 )

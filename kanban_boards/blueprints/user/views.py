@@ -2,9 +2,9 @@ from flask import Blueprint, redirect, request, flash, url_for, render_template
 from flask_login import login_required, login_user, current_user, logout_user
 
 from lib.safe_next_url import safe_next_url
-from job_boards.blueprints.user.decorators import anonymous_required
-from job_boards.blueprints.user.models import User
-from job_boards.blueprints.user.forms import (
+from kanban_boards.blueprints.user.decorators import anonymous_required
+from kanban_boards.blueprints.user.models import User
+from kanban_boards.blueprints.user.forms import (
     LoginForm,
     BeginPasswordResetForm,
     PasswordResetForm,

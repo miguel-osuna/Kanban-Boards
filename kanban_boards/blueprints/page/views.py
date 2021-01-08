@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from job_boards.extensions import mail
+from kanban_boards.extensions import mail
 from flask_mail import Message
 
 page = Blueprint("page", __name__, template_folder="templates")

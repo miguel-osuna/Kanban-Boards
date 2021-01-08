@@ -6,10 +6,12 @@ from flask_login import current_user
 from werkzeug.debug import DebuggedApplication
 
 from config.settings import app_config
+
 # Blueprint imports
-from job_boards.blueprints import page, contact, user
+from kanban_boards.blueprints import page, contact, user
+
 # Extension imports
-from job_boards.extensions import (
+from kanban_boards.extensions import (
     debug_toolbar,
     mail,
     csrf,
@@ -29,7 +31,7 @@ def create_app(configuration="production"):
     """
 
     # Create Flask application
-    app = Flask("job_boards", static_folder="../public", static_url_path="")
+    app = Flask("kanban_boards", static_folder="../public", static_url_path="")
 
     # Setup app configuration from configuration object
     app.config.from_object(app_config[configuration])

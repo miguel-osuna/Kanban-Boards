@@ -1,6 +1,6 @@
 from wtforms.validators import ValidationError
 
-from job_boards.blueprints.user.models import User
+from kanban_boards.blueprints.user.models import User
 
 
 def ensure_identity_exists(form, field):

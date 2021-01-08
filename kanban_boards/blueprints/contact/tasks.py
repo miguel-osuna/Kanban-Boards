@@ -1,7 +1,7 @@
 import os
 
 from lib.flask_mailplus import send_template_message
-from job_boards.extensions import celery
+from kanban_boards.extensions import celery
 
 
 @celery.task()

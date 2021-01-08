@@ -10,7 +10,7 @@ from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer, TimedJSONWebSignatureSerializer
 
 from lib.util_sqlalchemy import ResourceMixin, AwareDateTime
-from job_boards.extensions import db
+from kanban_boards.extensions import db
 
 
 class User(UserMixin, ResourceMixin, db.Model):
@@ -115,7 +115,7 @@ class User(UserMixin, ResourceMixin, db.Model):
         reset_token = user.serialize_token()
 
         # This prevents circular imports
-        from job_boards.blueprints.user.tasks import deliver_password_reset_email
+        from kanban_boards.blueprints.user.tasks import deliver_password_reset_email
 
         deliver_password_reset_email.delay(user.id, reset_token)
 
@@ -134,7 +134,9 @@ class User(UserMixin, ResourceMixin, db.Model):
         reset_token = user.serialize_token()
 
         # This prevents circular imports
-        from job_boards.blueprints.user.tasks import deliver_account_confirmation_email
+        from kanban_boards.blueprints.user.tasks import (
+            deliver_account_confirmation_email,
+        )
 
         deliver_account_confirmation_email.delay(user.id, reset_token)
 

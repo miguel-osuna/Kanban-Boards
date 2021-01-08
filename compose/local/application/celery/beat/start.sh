@@ -4,4 +4,4 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-celery beat --app=job_boards.celery_app:app --loglevel=info --pidfile= --schedule=
+celery beat --app=kanban_boards.celery_app:app --loglevel=info --pidfile= --schedule=
