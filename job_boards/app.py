@@ -6,16 +6,14 @@ from flask_login import current_user
 from werkzeug.debug import DebuggedApplication
 
 from config.settings import app_config
-
 # Blueprint imports
 from job_boards.blueprints import page, contact, user
-
 # Extension imports
 from job_boards.extensions import (
     debug_toolbar,
     mail,
     csrf,
-    # login_manager,
+    login_manager,
     babel,
     flask_static_digest,
     celery,
@@ -67,7 +65,7 @@ def register_extensions(app):
     debug_toolbar.init_app(app)
     mail.init_app(app)
     csrf.init_app(app)
-    # login_manager.init_app(app)
+    login_manager.init_app(app)
     babel.init_app(app)
     flask_static_digest.init_app(app)
     return None

@@ -35,7 +35,7 @@ class Config(object):
         "beat_schedule": CELERYBEAT_SCHEDULE,
     }
 
-    # Flask Mail Configuration
+    # Flask Mail Configuration 
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = os.getenv("MAIL_PORT", 587)
     MAIL_USE_TLS = bool(strtobool(os.getenv("MAIL_USE_TLS", "true")))
@@ -52,6 +52,10 @@ class Config(object):
     RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY", None)
     RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY", None)
     RECAPTCHA_DATA_ATTRS = {"theme": "light", "size": "normal"}
+
+    # Flask-Babel Configuration
+    LANGUAGES = {"en": "English", "es": "Spanish"}
+    BABEL_DEFAULT_LOCALE = "en"
 
     # SQLAlchemy Configuration
 
