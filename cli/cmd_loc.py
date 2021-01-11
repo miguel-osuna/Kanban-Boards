@@ -6,7 +6,7 @@ from flask.cli import with_appcontext
 
 def count_locs(file_type, comment_pattern):
     """
-    Detect if a program is on the system path. 
+    Detect if a program is on the system path.
 
     :param file_type: Which file type will be searched?
     :param file_type: str
@@ -26,7 +26,7 @@ def count_locs(file_type, comment_pattern):
 @with_appcontext
 def loc():
     """
-    Cound lines of code in the project. 
+    Count lines of code in the project.
 
     :return: None
     """
@@ -45,3 +45,4 @@ def loc():
         )
 
     return None
+
