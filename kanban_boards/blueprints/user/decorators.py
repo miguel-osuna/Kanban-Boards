@@ -46,3 +46,25 @@ def role_required(*roles):
         return decorated_function
 
     return decorator
+
+
+def confirmed_required(url="/account/unconfirmed"):
+    """
+    Redirect a user to start the account confirmation process.
+    :param url: URL to be redirect to if invalid
+    :type url: string
+    :return: Function
+    """
+
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if current_user.confirmed is False:
+                flash("Please confirm your account!", "error")
+                return redirect(url)
+            return f(*args, **kwargs)
+
+        return decorated_function
+
+    return decorator
+

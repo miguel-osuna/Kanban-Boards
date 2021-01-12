@@ -2,7 +2,11 @@ from flask import Blueprint, redirect, request, flash, url_for, render_template
 from flask_login import login_required, login_user, current_user, logout_user
 
 from lib.safe_next_url import safe_next_url
-from kanban_boards.blueprints.user.decorators import anonymous_required
+from lib.util_datetime import tzaware_datetime
+from kanban_boards.blueprints.user.decorators import (
+    anonymous_required,
+    confirmed_required,
+)
 from kanban_boards.blueprints.user.models import User
 from kanban_boards.blueprints.user.forms import (
     LoginForm,
@@ -11,6 +15,7 @@ from kanban_boards.blueprints.user.forms import (
     SignupForm,
     UpdateCredentialsForm,
     UpdateLocaleForm,
+    AccountUnconfirmedForm,
 )
 
 user = Blueprint("user", __name__, template_folder="templates")
@@ -29,9 +34,22 @@ def signup():
         user.password = User.encrypt_password(request.form.get("password"))
         user.save()
 
+        # Begin account confirmation by sending an email to the user
+        user.initialize_account_confirmation(user.email)
+        flash(
+            "Thank you for signing up with Tides! An email has been sent to {}".format(
+                user.email
+            ),
+            "success",
+        )
+
         if login_user(user):
-            flash("Thank you for signing up to Tides!", "success")
-            return redirect(url_for("user.begin_account_confirmation"))
+            # Update the users activity, since he is signed in after the sign up
+            user.update_activity_tracking(request.remote_addr)
+
+            # Redirect to the account confirmation page
+            # in case the user needs to resend the link
+            return redirect(url_for("user.unconfirmed"))
 
     return render_template("user/signup.html", form=form)
 
@@ -122,13 +140,24 @@ def password_reset():
 
 
 @user.route(
-    "/account/begin_account_confirmation",
-    methods=["GET", "POST"],
-    endpoint="begin_account_confirmation",
+    "/account/unconfirmed", methods=["GET", "POST"], endpoint="unconfirmed",
 )
 @login_required
-def begin_account_confirmation():
-    return render_template("user/begin_account_confirmation.html")
+def unconfirmed():
+    # Redirect user if he is already confirmed to avoid sending any emails
+
+    form = AccountUnconfirmedForm()
+
+    if current_user.confirmed:
+        return redirect(url_for("user.settings"))
+
+    # Send a new email if the user presses the button
+    if form.validate_on_submit():
+        current_user.initialize_account_confirmation(current_user.email)
+        flash("A new confirmation email has been sent.", "success")
+        return redirect(url_for("user.unconfirmed"))
+
+    return render_template("user/unconfirmed.html", form=form)
 
 
 @user.route(
@@ -138,11 +167,33 @@ def begin_account_confirmation():
 )
 @login_required
 def account_confirmation():
-    return render_template("user/account_confirmation.html")
+    reset_token = request.args.get("reset_token")
+    user = User.deserialize_token(reset_token)
+
+    if user is None:
+        print(user)
+        flash("Your reset token has expired or was tampered with.", "error")
+        return redirect(url_for("user.login"))
+
+    # Notice the user in case he tries to confirm his account again
+    if user.confirmed:
+        flash("Your account has been already confirmed.", "sucess")
+
+    # Confirm the user account
+    else:
+        user.confirmed = True
+        user.confirmed_on = tzaware_datetime()
+        user.save()
+
+        flash("Your account has been confirmed.", "success")
+
+    login_user(user)
+    return redirect(url_for("user.settings"))
 
 
 @user.route("/settings", endpoint="settings")
 @login_required
+@confirmed_required()
 def settings():
     return render_template("user/settings.html")
 
@@ -153,6 +204,7 @@ def settings():
     endpoint="update_credentials",
 )
 @login_required
+@confirmed_required()
 def update_credentials():
     form = UpdateCredentialsForm(obj=current_user)
 
@@ -163,7 +215,7 @@ def update_credentials():
 
         # If the user updated his password, encrypt it
         if new_password:
-            current_user.password = User.encrypt(new_password)
+            current_user.password = User.encrypt_password(new_password)
 
         current_user.save()
 
@@ -177,6 +229,7 @@ def update_credentials():
     "/settings/update_locale", methods=["GET", "POST"], endpoint="update_locale"
 )
 @login_required
+@confirmed_required()
 def update_locale():
     form = UpdateLocaleForm(locale=current_user.locale)
 

@@ -15,7 +15,7 @@ from kanban_boards.blueprints.user.validations import (
 LANGUAGES = Config.LANGUAGES
 
 
-class SignupForm(FlaskForm):
+class SignupForm(ModelForm):
     username_message = "Letters, numbers and underscores only please."
 
     username = StringField(
@@ -70,3 +70,7 @@ class UpdateLocaleForm(FlaskForm):
         validators=[DataRequired()],
         choices=choices_from_dict(LANGUAGES, prepend_blank=False),
     )
+
+
+class AccountUnconfirmedForm(FlaskForm):
+    pass

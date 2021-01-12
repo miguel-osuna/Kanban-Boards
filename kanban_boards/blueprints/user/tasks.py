@@ -1,6 +1,6 @@
 from lib.flask_mailplus import send_template_message
 from kanban_boards.app import celery
-from kanban_boards.blueprints.user.modesl import User
+from kanban_boards.blueprints.user.models import User
 
 
 @celery.task()

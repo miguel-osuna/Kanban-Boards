@@ -114,7 +114,7 @@ class User(UserMixin, ResourceMixin, db.Model):
         user = User.find_by_identity(identity)
         reset_token = user.serialize_token()
 
-        # This prevents circular imports
+        # This prevents circular imports.
         from kanban_boards.blueprints.user.tasks import deliver_password_reset_email
 
         deliver_password_reset_email.delay(user.id, reset_token)

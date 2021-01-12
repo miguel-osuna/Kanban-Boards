@@ -233,10 +233,6 @@ def authentication(app, user_model):
             login_manager.login_message = "This account has been disabled."
             return None
 
-        if not user.is_confirmed():
-            login_manager.login_message = "Please confirm your account."
-            return None
-
         return user
 
 

@@ -20,6 +20,7 @@ class Config(object):
     # Celery Configuration
     CELERY_TASK_LIST = [
         "kanban_boards.blueprints.contact.tasks",
+        "kanban_boards.blueprints.user.tasks",
     ]
     CELERYBEAT_SCHEDULE = {}
     CELERY = {
