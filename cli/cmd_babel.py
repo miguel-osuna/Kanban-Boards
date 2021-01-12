@@ -19,7 +19,7 @@ def babel():
 @with_appcontext
 def extract():
     """
-    Extract string into a pot file. 
+    Extract string into a pot file.
 
     :return: Subprocess call result
     """
@@ -34,7 +34,7 @@ def extract():
 @with_appcontext
 def init(language=None):
     """
-    Map translations to a different language. 
+    Map translations to a different language.
 
     :return: Subprocess call result
     """

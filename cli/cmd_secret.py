@@ -12,7 +12,7 @@ def secret(bytes):
     """
     Generate a random secret token.
 
-    :return: str 
+    :return: str
     """
 
     return click.echo(binascii.b2a_hex(os.urandom(bytes)))

@@ -13,7 +13,7 @@ from flask.cli import with_appcontext
 @with_appcontext
 def flake8(skip_init, path):
     """
-    Run flake8 to analyze your code base. 
+    Run flake8 to analyze your code base.
 
     :param skip_init: Skip checking __init__.py files
     :param path: Test coverage path

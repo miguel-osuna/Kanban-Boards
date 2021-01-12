@@ -45,4 +45,3 @@ def loc():
         )
 
     return None
-
