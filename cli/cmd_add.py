@@ -129,7 +129,7 @@ def users():
         # Ensure the seeded admin is always an admin with the seeded password and username
         if email == app_config["SEED_ADMIN_EMAIL"]:
             username = app_config["SEED_ADMIN_USERNAME"]
-            password = app_config["SEED_ADMIN_PASSWORD"]
+            password = User.encrypt_password(app_config["SEED_ADMIN_PASSWORD"])
 
             params["username"] = username
             params["password"] = password

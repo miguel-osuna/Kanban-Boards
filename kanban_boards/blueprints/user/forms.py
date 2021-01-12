@@ -38,6 +38,7 @@ class LoginForm(FlaskForm):
     identity = StringField(
         "Username or email", validators=[DataRequired(), Length(3, 254)]
     )
+    password = PasswordField("Password", validators=[DataRequired(), Length(8, 128)])
     remember = BooleanField("Remember me?")
 
 
@@ -69,4 +70,3 @@ class UpdateLocaleForm(FlaskForm):
         validators=[DataRequired()],
         choices=choices_from_dict(LANGUAGES, prepend_blank=False),
     )
-

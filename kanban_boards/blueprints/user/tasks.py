@@ -12,7 +12,7 @@ def deliver_account_confirmation_email(user_id, reset_token):
     :type user_id: int
     :param reset_token: The reset token
     :type reset_token: str
-    :return: None if a user was not found 
+    :return: None if a user was not found
     """
 
     user = User.query.get(user_id)

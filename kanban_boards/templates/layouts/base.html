@@ -23,14 +23,14 @@
   <body>
     <header>{% block header %}{% endblock %}</header>
 
-    <main class="container mb-5">{{ flash.render() }}{% block body %}{% endblock %}</main>
+    <main class="container mt-5 mb-5">
+      {{ flash.render() }} {% block body %}{% endblock %}
+    </main>
 
     <footer class="footer text-center">
       <div class="container">
         <ul class="list-inline">
-          <li class="list-inline-item text-muted">
-            Tides &copy; Current Year
-          </li>
+          <li class="list-inline-item text-muted">Tides &copy; This Year</li>
           {% block footer %}{% endblock %}
         </ul>
       </div>

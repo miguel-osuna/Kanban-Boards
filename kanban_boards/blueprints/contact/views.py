@@ -1,7 +1,5 @@
 from flask import Blueprint, flash, redirect, request, url_for, render_template
 
-# from flask_login import current_user
-
 from kanban_boards.blueprints.contact.forms import ContactForm
 
 contact = Blueprint("contact", __name__, template_folder="templates")
@@ -29,4 +27,3 @@ def index():
         return redirect(url_for("contact.index"))
 
     return render_template("contact/index.html", form=form)
-

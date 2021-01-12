@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer, TimedJSONWebSignatureSerializer
 
+from lib.util_datetime import tzaware_datetime
 from lib.util_sqlalchemy import ResourceMixin, AwareDateTime
 from kanban_boards.extensions import db
 
@@ -22,21 +23,20 @@ class User(UserMixin, ResourceMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     # Authentication
+    username = db.Column(db.String(24), unique=True, index=True, nullable=False)
+    email = db.Column(
+        db.String(255), unique=True, index=True, nullable=False, server_default=""
+    )
+    password = db.Column(db.String(128), nullable=False, server_default="")
     role = db.Column(
         db.Enum(*ROLE, name="role_types", native_enum=False),
         index=True,
         nullable=False,
         server_default="member",
     )
-    active = db.Column("is_active", db.Boolean(), nullable=False, server_default="1")
-    confirmed = db.Column(
-        "is_confirmed", db.Boolean(), nullable=False, server_default="0"
-    )
-    username = db.Column(db.String(24), unique=True, index=True)
-    email = db.Column(
-        db.String(255), unique=True, index=True, nullable=False, server_default=""
-    )
-    password = db.Column(db.String(128), nullable=False, server_default="")
+    active = db.Column(db.Boolean(), nullable=False, server_default="1")
+    confirmed = db.Column(db.Boolean(), nullable=False, server_default="0")
+    confirmed_on = db.Column(AwareDateTime(), default=tzaware_datetime, nullable=True)
 
     # Activity tracking
     sign_in_count = db.Column(db.Integer, nullable=False, default=0)
@@ -57,7 +57,7 @@ class User(UserMixin, ResourceMixin, db.Model):
     @classmethod
     def find_by_identity(cls, identity):
         """
-        Find a user by their e-mail or username. 
+        Find a user by their e-mail or username.
 
         :param identity: Email or username
         :type identity: str
@@ -87,8 +87,8 @@ class User(UserMixin, ResourceMixin, db.Model):
 
     @classmethod
     def deserialize_token(cls, token):
-        """ 
-        Obtain a user from de-serializing a signed token. 
+        """
+        Obtain a user from de-serializing a signed token.
 
         :param token: Signed token.
         :type token: str
@@ -105,7 +105,7 @@ class User(UserMixin, ResourceMixin, db.Model):
     @classmethod
     def initialize_password_reset(cls, identity):
         """
-        Generate a token to reset the password for a specific user. 
+        Generate a token to reset the password for a specific user.
 
         :param identity: User e-mail address or username
         :type identity: str
@@ -145,7 +145,7 @@ class User(UserMixin, ResourceMixin, db.Model):
     @classmethod
     def search(cls, query):
         """
-        Search a resource by 1 or more fields. 
+        Search a resource by 1 or more fields.
 
         :param query: Search query
         :type query: str
@@ -164,10 +164,10 @@ class User(UserMixin, ResourceMixin, db.Model):
 
     @classmethod
     def is_last_admin(cls, user, new_role, new_active):
-        """ 
-        Determine whether or not this user is the last admin account. 
+        """
+        Determine whether or not this user is the last admin account.
 
-        :param user: User being tested 
+        :param user: User being tested
         :type user: User
         :param new_role: New role being set
         :type new_role: str
@@ -191,7 +191,7 @@ class User(UserMixin, ResourceMixin, db.Model):
     def is_active(self):
         """
         Return whether or not the user account is active, this satisfies
-        Flask-Login by overwriting the default value. 
+        Flask-Login by overwriting the default value.
 
         :return: bool
         """
@@ -199,8 +199,7 @@ class User(UserMixin, ResourceMixin, db.Model):
 
     def is_confirmed(self):
         """
-        Return whether or not the user account is confirmed, this satisfies
-        Flask-Login by overwriting the default value.
+        Return whether or not the user account is confirmed.
 
         :return: bool
         """

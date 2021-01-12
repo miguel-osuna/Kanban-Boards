@@ -3,7 +3,7 @@ Environment Configuration
 """
 
 import os
-
+from datetime import timedelta
 from distutils.util import strtobool
 
 
@@ -57,9 +57,24 @@ class Config(object):
     LANGUAGES = {"en": "English", "es": "Spanish"}
     BABEL_DEFAULT_LOCALE = "en"
 
-    # SQLAlchemy Configuration
+    # Flask-Login Configuration
+    REMEMBER_COOKIE_DURATION = timedelta(days=90)
 
-    # Flask Login Configuration
+    # SQLAlchemy Configuration
+    pg_user = os.getenv("POSTGRES_USER", "admin")
+    pg_password = os.getenv("POSTGRES_PASSWORD", "password")
+    pg_host = os.getenv("POSTGRES_HOST", "postgres")
+    pg_port = os.getenv("POSTGRES_PORT", "5432")
+    pg_db_name = os.getenv("POSTGRES_DB", "kanban_boards")
+    SQLALCHEMY_DATABASE_URI = "postgresql://{0}:{1}@{2}:{3}/{4}".format(
+        pg_user, pg_password, pg_host, pg_port, pg_db_name
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # Seed Data Configuration
+    SEED_ADMIN_USERNAME = os.getenv("SEED_ADMIN_USERNAME", "admin")
+    SEED_ADMIN_EMAIL = os.getenv("SEED_ADMIN_EMAIL", "admin@email.com")
+    SEED_ADMIN_PASSWORD = os.getenv("SEED_ADMIN_PASSWORD", "password")
 
 
 class ProductionConfig(Config):
@@ -91,6 +106,12 @@ class TestingConfig(Config):
 
     # Werkzeug Configuration
     WERKZEUG_DEBUG_PIN = "off"
+
+    # Flask-WTF Configuration
+    WTF_CSRF_ENABLED = False
+
+    # Flask-SQLAlchemy Configuration
+    SQLALCHEMY_DATABASE_URI = "{0}_test".format(Config.SQLALCHEMY_DATABASE_URI)
 
 
 # App configuration dictionary

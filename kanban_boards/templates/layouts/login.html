@@ -1,17 +1,22 @@
-{% extends "layouts/base.html" %}
+{% extends 'layouts/base.html' %} 
 
 {% block header %}
-  <div class="text-center mb-5">
+<div class="text-center mb-5">
   <a href="{{ url_for('page.home') }}">
-    <img src="{{ url_for('static', filename='images/tides.png') }}"
-         class="img-fluid"
-         width="178" height="176" title="Snake Eyes" alt="Snake Eyes"/>
+    <img
+      src="{{ url_for('static', filename='images/tides.png') }}"
+      class="img-fluid"
+      width="178"
+      height="176"
+      title="Snake Eyes"
+      alt="Snake Eyes"
+    />
   </a>
-  </div>
-{% endblock %}
+</div>
+{% endblock %} 
 
 {% block footer %}
-  <li class="list-inline-item">
-    <a href="{{ url_for('user.signup') }}">Sign up today</a>
-  </li>
+<li class="list-inline-item">
+  <a href="{{ url_for('user.signup') }}">Sign up today</a>
+</li>
 {% endblock %}

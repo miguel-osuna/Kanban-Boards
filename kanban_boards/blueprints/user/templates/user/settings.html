@@ -1,7 +1,28 @@
-{% extends "layouts/app.html" %}
+{% extends 'layouts/app.html' %}
 
 {% block title %}Account settings{% endblock %}
 
 {% block body %}
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <h2>Settings</h2>
+        <h5 class="text-muted">{{ current_user.email }}</h5>
+        <div class="list-group">
+          <a href="{{ url_for('user.update_credentials') }}"
+             class="list-group-item list-group-item-action">
+            Update email and password
+          </a>
+          <a href="{{ url_for('user.update_locale') }}"
+             class="list-group-item list-group-item-action">
+            Update language
+          </a>
+          <span class="list-group-item text-muted">
+            Username:
+            <strong> {{current_user.username }}</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
