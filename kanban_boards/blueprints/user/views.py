@@ -103,6 +103,7 @@ def logout():
 )
 @anonymous_required()
 def begin_password_reset():
+    """ Route to begin account password reset. """
     form = BeginPasswordResetForm()
 
     if form.validate_on_submit():
@@ -119,6 +120,7 @@ def begin_password_reset():
 )
 @anonymous_required()
 def password_reset():
+    """ Route to reset password. """
     form = PasswordResetForm(reset_token=request.args.get("reset_token"))
 
     if form.validate_on_submit():

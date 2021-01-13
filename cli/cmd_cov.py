@@ -6,7 +6,7 @@ from flask.cli import with_appcontext
 
 
 @click.command()
-@click.argument("path", default=".")
+@click.argument("path", default="kanban_boards")
 @with_appcontext
 def cov(path):
     """
