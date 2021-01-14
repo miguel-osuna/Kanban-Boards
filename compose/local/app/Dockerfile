@@ -27,19 +27,19 @@ RUN pip install -r /requirements/local.txt \
     && rm -rf /requirements
 
 # Copy the start bash scripts and change their permissions
-COPY ./compose/local/application/start.sh /start.sh
+COPY ./compose/local/app/start.sh /start.sh
 RUN sed -i 's/\r$//g' /start.sh
 RUN chmod +x /start.sh
 
-COPY ./compose/local/application/celery/worker/start.sh /start-celeryworker.sh
+COPY ./compose/local/app/celery/worker/start.sh /start-celeryworker.sh
 RUN sed -i 's/\r$//g' /start-celeryworker.sh
 RUN chmod +x /start-celeryworker.sh
 
-COPY ./compose/local/application/celery/beat/start.sh /start-celerybeat.sh
+COPY ./compose/local/app/celery/beat/start.sh /start-celerybeat.sh
 RUN sed -i 's/\r$//g' /start-celerybeat.sh
 RUN chmod +x /start-celerybeat.sh
 
-COPY ./compose/local/application/celery/flower/start.sh /start-flower.sh
+COPY ./compose/local/app/celery/flower/start.sh /start-flower.sh
 RUN sed -i 's/\r$//g' /start-flower.sh
 RUN chmod +x /start-flower.sh
 

@@ -39,9 +39,8 @@ def signup():
         user.initialize_account_confirmation(user.email)
         flash(
             _(
-                "Thank you for signing up with Tides! An email has been sent to {}".format(
-                    user.email
-                )
+                "Thank you for signing up with Tides! An email has been sent to %(email)s",
+                email=user.email,
             ),
             "success",
         )
@@ -112,7 +111,7 @@ def begin_password_reset():
     if form.validate_on_submit():
         user = User.initialize_password_reset(request.form.get("identity"))
 
-        flash(_("An email has been sent to {0}".format(user.email)), "success")
+        flash(_("An email has been sent to %(email)s", email=user.email), "success")
         return redirect(url_for("user.login"))
 
     return render_template("user/begin_password_reset.html", form=form)

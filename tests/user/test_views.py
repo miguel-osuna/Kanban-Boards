@@ -89,8 +89,8 @@ class TestSignup(ViewTestMixin):
         assert_status_with_message(
             200,
             response,
-            "Thank you for signing up with Tides! An email has been sent to {}".format(
-                user["email"]
+            "Thank you for signing up with Tides! An email has been sent to {0}".format(
+                "new@local.host"
             ),
         )
 
@@ -174,10 +174,7 @@ class TestAccountConfirmation(ViewTestMixin):
         self.login(identity="unconfirmed@local.host")
 
         response = self.client.get(
-            url_for(
-                "user.account_confirmation",
-                confirmation_token="123",
-            ),
+            url_for("user.account_confirmation", confirmation_token="123",),
             follow_redirects=True,
         )
         assert_status_with_message(

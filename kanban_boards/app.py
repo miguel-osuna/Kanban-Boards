@@ -183,7 +183,7 @@ def register_shell_context(app):
 
     def shell_context():
         """ Shell context objects. """
-        return {"db": db, "User": User}
+        return dict(db=db, User=User)
 
     app.shell_context_processors(shell_context)
     return None

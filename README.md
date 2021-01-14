@@ -4,20 +4,19 @@ Kanban-Boards
 
 # Commands
 
-- docker-compose -f local.yml down -v
-- docker-compose -f local.yml build --no-cache
-- docker-compose -f local.yml up
-- docker-compose -f local.yml exec application flask black
-- docker-compose -f local.yml exec application flask flake8
-- docker-compose -f local.yml exec application flask test
-- docker-compose -f local.yml exec application flask cov
-- docker-compose -f local.yml exec application flask dbsetup reset --with-testdb
-- docker-compose -f local.yml exec application flask db init (if no migrations folder is available)
-- docker-compose -f local.yml exec --user "$(id -u):$(id -g)" application flask db migrate
-- docker-compose -f local.yml exec application flask db upgrade
-- docker-compose -f local.yml exec application flask add all
-- docker-compose -f local.yml exec --user "$(id -u):$(id -g)" application flask babel extract
-- docker-compose -f local.yml exec --user "$(id -u):$(id -g)" application flask babel init --language <lang_code> (create a language folder)
-- docker-compose -f local.yml exec --user "$(id -u):$(id -g)" application flask babel update (update the language folders)
-- docker-compose -f local.yml exec --user "$(id -u):$(id -g)" application flask babel compile (compile the translations)
-
+- docker-compose down -v
+- docker-compose build --no-cache
+- docker-compose up
+- docker-compose exec app flask black
+- docker-compose exec app flask flake8
+- docker-compose exec app flask test
+- docker-compose exec app flask cov
+- docker-compose exec app flask dbsetup reset --with-testdb
+- docker-compose exec app flask db init (if no migrations folder is available)
+- docker-compose exec --user "$(id -u):$(id -g)" app flask db migrate
+- docker-compose exec app flask db upgrade
+- docker-compose exec app flask add all
+- docker-compose exec --user "$(id -u):$(id -g)" app flask babel extract
+- docker-compose exec --user "$(id -u):$(id -g)" app flask babel init --language <lang_code> (create a language folder)
+- docker-compose exec --user "$(id -u):$(id -g)" app flask babel update (update the language folders)
+- docker-compose exec --user "$(id -u):$(id -g)" app flask babel compile (compile the translations)
