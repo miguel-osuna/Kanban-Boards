@@ -1,6 +1,4 @@
 import pytest
-import pytz
-from unittest.mock import Mock
 
 from kanban_boards.app import create_app
 from kanban_boards.extensions import db as _db
@@ -16,13 +14,19 @@ def app():
     """
     _app = create_app("testing")
 
-    with _app.app_context():
-        yield _app  # This is where testing happens
+    # Establish an application context before running the tests.
+    ctx = _app.app_context()
+    ctx.push()
+
+    yield _app
+
+    ctx.pop()
 
 
 @pytest.fixture(scope="function")
 def client(app):
-    """ Setup an app client, this gets executed for each test function. 
+    """
+    Setup an app client, this gets executed for each test function.
 
     :param app: Pytest fixture
     :return: Flask app client
@@ -32,7 +36,7 @@ def client(app):
 
 @pytest.fixture(scope="session")
 def db(app):
-    """ 
+    """
     Setup our database, this only gets executed once per session.
 
     :param app: Pytest fixture
@@ -42,14 +46,14 @@ def db(app):
     _db.drop_all()
     _db.create_all()
 
-    # Create a single user, because a lot of tests do not muytate this user.
+    # Create a single user, because a lot of tests do not mutate this user.
     # It will result in faster tests
 
     params = {
         "role": "admin",
-        "username": app.config["SEED_ADMIN_USERNAME"],
-        "email": app.config["SEED_ADMIN_EMAIL"],
-        "password": app.config["SEED_ADMIN_PASSWORD"],
+        "username": "admin",
+        "email": "admin@local.host",
+        "password": "password",
         "confirmed": True,
     }
 
@@ -81,14 +85,14 @@ def session(db):
 
 
 @pytest.fixture(scope="session")
-def token(app, db):
+def token(db):
     """
     Serialize a JWS token.
 
     :param db: Pytest fixture
     :return: JWS token
     """
-    user = User.find_by_identity(app.config["SEED_ADMIN_EMAIL"])
+    user = User.find_by_identity("admin@local.host")
     return user.serialize_token()
 
 
@@ -100,6 +104,7 @@ def users(db):
     :param db: Pytest fixture
     :return: SQLAlchemy database session
     """
+    db.session.query(User).delete()
 
     users = [
         {
@@ -120,6 +125,7 @@ def users(db):
             "email": "disabled@local.host",
             "password": "password",
             "active": False,
+            "confirmed": True,
         },
         {
             "username": "unconfirmed",
@@ -133,4 +139,6 @@ def users(db):
         db.session.add(User(**user))
 
     db.session.commit()
+
+    return db
 

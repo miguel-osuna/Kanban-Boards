@@ -36,7 +36,7 @@ class Config(object):
         "beat_schedule": CELERYBEAT_SCHEDULE,
     }
 
-    # Flask Mail Configuration
+    # Flask-Mail Configuration
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = os.getenv("MAIL_PORT", 587)
     MAIL_USE_TLS = bool(strtobool(os.getenv("MAIL_USE_TLS", "true")))
@@ -61,12 +61,12 @@ class Config(object):
     # Flask-Login Configuration
     REMEMBER_COOKIE_DURATION = timedelta(days=90)
 
-    # SQLAlchemy Configuration
+    # Flask-SQLAlchemy Configuration
     pg_user = os.getenv("POSTGRES_USER", "admin")
     pg_password = os.getenv("POSTGRES_PASSWORD", "password")
     pg_host = os.getenv("POSTGRES_HOST", "postgres")
     pg_port = os.getenv("POSTGRES_PORT", "5432")
-    pg_db_name = os.getenv("POSTGRES_DB", "kanban_boards")
+    pg_db_name = os.getenv("POSTGRES_DB", "kanbanboards")
     SQLALCHEMY_DATABASE_URI = "postgresql://{0}:{1}@{2}:{3}/{4}".format(
         pg_user, pg_password, pg_host, pg_port, pg_db_name
     )
@@ -113,6 +113,11 @@ class TestingConfig(Config):
 
     # Flask-SQLAlchemy Configuration
     SQLALCHEMY_DATABASE_URI = "{0}_test".format(Config.SQLALCHEMY_DATABASE_URI)
+
+    # Flask-DebugToolbar.
+    DEBUG_TB_INTERCEPT_REDIRECTS = (
+        False  # This avoids having interruptions in the redirections
+    )
 
 
 # App configuration dictionary

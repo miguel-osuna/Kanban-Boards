@@ -2,7 +2,7 @@ Hi, {{ user.email }},
 
 You're almost there, please click the link below to confirm your account:
 
-{{ url_for("user.account_confirmation", reset_token=reset_token, _external=True ) }}
+{{ url_for("user.account_confirmation", confirmation_token=confirmation_token, _external=True ) }}
 
 If you did not signup to Tides, please ignore this e-mail. The account will not be 
 activated unless you access the link above.

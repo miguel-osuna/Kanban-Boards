@@ -4,14 +4,14 @@ from kanban_boards.blueprints.user.models import User
 
 
 @celery.task()
-def deliver_account_confirmation_email(user_id, reset_token):
+def deliver_account_confirmation_email(user_id, confirmation_token):
     """
     Send an account confirmation e-mail to a user.
 
     :param user_id: The user id
     :type user_id: int
-    :param reset_token: The reset token
-    :type reset_token: str
+    :param confirmation_token: The reset token
+    :type confirmation_token: str
     :return: None if a user was not found
     """
 
@@ -20,7 +20,7 @@ def deliver_account_confirmation_email(user_id, reset_token):
     if user is None:
         return
 
-    ctx = {"user": user, "reset_token": reset_token}
+    ctx = {"user": user, "confirmation_token": confirmation_token}
 
     send_template_message(
         subject="Account Confirmation from Tides",

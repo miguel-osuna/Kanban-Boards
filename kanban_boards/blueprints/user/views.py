@@ -146,11 +146,11 @@ def password_reset():
 )
 @login_required
 def unconfirmed():
-    # Redirect user if he is already confirmed to avoid sending any emails
-
     form = AccountUnconfirmedForm()
 
+    # Redirect user if he is already confirmed to avoid sending any emails
     if current_user.confirmed:
+        flash("Your account is already confirmed.", "success")
         return redirect(url_for("user.settings"))
 
     # Send a new email if the user presses the button
@@ -163,23 +163,21 @@ def unconfirmed():
 
 
 @user.route(
-    "/account/account_confirmation",
-    methods=["GET", "POST"],
-    endpoint="account_confirmation",
+    "/account/account_confirmation", methods=["GET"], endpoint="account_confirmation",
 )
 @login_required
 def account_confirmation():
-    reset_token = request.args.get("reset_token")
-    user = User.deserialize_token(reset_token)
+    confirmation_token = request.args.get("confirmation_token")
+    user = User.deserialize_token(confirmation_token)
 
     if user is None:
         print(user)
-        flash("Your reset token has expired or was tampered with.", "error")
+        flash("Your confirmation token has expired or was tampered with.", "error")
         return redirect(url_for("user.login"))
 
     # Notice the user in case he tries to confirm his account again
     if user.confirmed:
-        flash("Your account has been already confirmed.", "sucess")
+        flash("Your account has been already confirmed.", "success")
 
     # Confirm the user account
     else:

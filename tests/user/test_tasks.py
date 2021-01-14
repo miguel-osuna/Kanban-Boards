@@ -20,7 +20,7 @@ class TestTasks(object):
         """ Deliver an account confirmation email. """
         with mail.record_messages() as outbox:
             user = User.find_by_identity("admin@local.host")
-            deliver_password_reset_email(user.id, token)
+            deliver_account_confirmation_email(user.id, token)
 
             assert len(outbox) == 1
             assert token in outbox[0].body

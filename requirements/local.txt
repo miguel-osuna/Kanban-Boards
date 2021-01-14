@@ -9,6 +9,7 @@ faker==5.0.1 # https://github.com/joke2k/faker
 pytest==6.2.1 # https://github.com/pytest-dev/pytest
 pytest-sugar==0.9.4 # https://github.com/Teemu/pytest-sugar
 pytest-cov==2.10.1 # https://github.com/pytest-dev/pytest-cov
+pytest-flask==1.1.0 # https://github.com/pytest-dev/pytest-flask
 # pytest-runner==5.2 # https://github.com/pytest-dev/pytest-runner
 # pytest-factoryboy==2.1.0 # https://github.com/pytest-dev/pytest-factoryboy
 # factory-boy==3.2.0 # https://github.com/FactoryBoy/factory_boy

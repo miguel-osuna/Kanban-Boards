@@ -131,14 +131,14 @@ class User(UserMixin, ResourceMixin, db.Model):
         :return: User instance
         """
         user = User.find_by_identity(identity)
-        reset_token = user.serialize_token()
+        confirmation_token = user.serialize_token()
 
         # This prevents circular imports
         from kanban_boards.blueprints.user.tasks import (
             deliver_account_confirmation_email,
         )
 
-        deliver_account_confirmation_email.delay(user.id, reset_token)
+        deliver_account_confirmation_email.delay(user.id, confirmation_token)
 
         return user
 
