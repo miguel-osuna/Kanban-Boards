@@ -31,4 +31,3 @@ class TestPage(ViewTestMixin):
     def test_500_page(self):
         """ 500 errors (internal server error) should show the custom 401 page. """
         pass
-

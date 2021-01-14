@@ -1,0 +1,355 @@
+# Spanish translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-01-14 20:31+0000\n"
+"PO-Revision-Date: 2021-01-14 19:31+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: kanban_boards/blueprints/contact/forms.py:10
+msgid "What's your e-mail address?"
+msgstr "¿Cuál es su correo?"
+
+#: kanban_boards/blueprints/contact/forms.py:13
+msgid "What's your question or issue?"
+msgstr "¿Qué pregunta o problema tiene?"
+
+#: kanban_boards/blueprints/contact/views.py:25
+msgid "Thank you for your message. We will contact you as soon as possible."
+msgstr ""
+"Gracias por su mensaje. Nos aseguraremos de contactarlo lo más pronto "
+"posible."
+
+#: kanban_boards/blueprints/contact/templates/contact/index.html:4
+msgid "Contact us with your feedback or issues"
+msgstr "Conctáctenos con sus comentarios o problemas"
+
+#: kanban_boards/blueprints/contact/templates/contact/index.html:5
+msgid "Contact our customer service department with any questions or concerns."
+msgstr "Comuníquese con nuestro departamento de servicio al cliente si tiene alguna pregunta o inquietud."
+
+#: kanban_boards/blueprints/contact/templates/contact/index.html:12
+msgid "Have a question?"
+msgstr "¿Tiene alguna pregunta?"
+
+#: kanban_boards/blueprints/contact/templates/contact/index.html:24
+#, fuzzy
+msgid "Send E-mail"
+msgstr "Usuario o correo"
+
+#: kanban_boards/blueprints/page/templates/page/privacy.html:1
+#: kanban_boards/blueprints/page/templates/page/privacy.html:6
+#: kanban_boards/templates/layouts/app.html:89
+msgid "Privacy Policy"
+msgstr "Política de Privacidad"
+
+#: kanban_boards/blueprints/page/templates/page/terms.html:1
+#: kanban_boards/blueprints/page/templates/page/terms.html:6
+#: kanban_boards/templates/layouts/app.html:92
+msgid "Terms of Service"
+msgstr "Términos de Servicio"
+
+#: kanban_boards/blueprints/user/decorators.py:42
+msgid "You do not have permission to do that."
+msgstr "No tiene permiso para hacer eso."
+
+#: kanban_boards/blueprints/user/decorators.py:64
+msgid "Please confirm your account!"
+msgstr "¡Por favor confirme su cuenta!"
+
+#: kanban_boards/blueprints/user/forms.py:20
+msgid "Letters, numbers and underscores only please."
+msgstr "Solo letras, números y guiones bajos por favor."
+
+#: kanban_boards/blueprints/user/forms.py:23
+#: kanban_boards/blueprints/user/templates/user/settings.html:21
+msgid "Username"
+msgstr "Usuario"
+
+#: kanban_boards/blueprints/user/forms.py:32
+msgid "Email"
+msgstr "Correo"
+
+#: kanban_boards/blueprints/user/forms.py:34
+#: kanban_boards/blueprints/user/forms.py:42
+#: kanban_boards/blueprints/user/forms.py:55
+msgid "Password"
+msgstr "Contraseña"
+
+#: kanban_boards/blueprints/user/forms.py:40
+msgid "Username or email"
+msgstr "Usuario o correo"
+
+#: kanban_boards/blueprints/user/forms.py:43
+msgid "Remember me?"
+msgstr "¿Recuérdame?"
+
+#: kanban_boards/blueprints/user/forms.py:48
+msgid "Username or Email"
+msgstr "Usuario o contraseña"
+
+#: kanban_boards/blueprints/user/forms.py:60
+msgid "Current Password"
+msgstr "Contraseña actual"
+
+#: kanban_boards/blueprints/user/forms.py:65
+#, fuzzy
+msgid "New Password"
+msgstr "Contraseña"
+
+#: kanban_boards/blueprints/user/forms.py:70
+msgid "Account language preference"
+msgstr "Preferencia de idioma de la cuenta"
+
+#: kanban_boards/blueprints/user/views.py:42
+msgid "Thank you for signing up with Tides! An email has been sent to {}"
+msgstr ""
+"¡Gracias por registrarte en Tides! Un correo de confirmación fue enviado "
+"a {}"
+
+#: kanban_boards/blueprints/user/views.py:88
+msgid "Sorry, wrong credentials."
+msgstr "Lo siento, credenciales incorrectas."
+
+#: kanban_boards/blueprints/user/views.py:98
+msgid "You have been logged out."
+msgstr "Se ha finalizado su sesión"
+
+#: kanban_boards/blueprints/user/views.py:115
+msgid "An email has been sent to {0}"
+msgstr "Un correo ha sido enviado a {0}"
+
+#: kanban_boards/blueprints/user/views.py:133
+msgid "Your reset token has expired or was tampered with."
+msgstr "Su token de reinicio ha caducado o fue manipulado."
+
+#: kanban_boards/blueprints/user/views.py:141
+msgid "Your password has been reset."
+msgstr "Su contraseña ha sido reiniciada."
+
+#: kanban_boards/blueprints/user/views.py:156
+msgid "Your account is already confirmed."
+msgstr "Su cuenta ya se encuentra confirmada."
+
+#: kanban_boards/blueprints/user/views.py:162
+msgid "A new confirmation email has been sent."
+msgstr "Un correo nuevo de confirmación ha sido enviado."
+
+#: kanban_boards/blueprints/user/views.py:178
+msgid "Your confirmation token has expired or was tampered with."
+msgstr "Su token de confirmación ha caducado o fue manipulado."
+
+#: kanban_boards/blueprints/user/views.py:183
+msgid "Your account has been already confirmed."
+msgstr "Su cuenta ya ha sido confirmada."
+
+#: kanban_boards/blueprints/user/views.py:191
+msgid "Your account has been confirmed."
+msgstr "Su cuenta ha sido confirmada."
+
+#: kanban_boards/blueprints/user/views.py:225
+msgid "Your credentials have been updated."
+msgstr "Tus credenciales han sido actualizadas."
+
+#: kanban_boards/blueprints/user/views.py:243
+msgid "Your locale settings have been updated."
+msgstr "Su configuración regional ha sido actualizada."
+
+#: kanban_boards/blueprints/user/templates/user/account_confirmation.html:4
+msgid "Confirm your account"
+msgstr "Confírme su cuenta"
+
+#: kanban_boards/blueprints/user/templates/user/begin_password_reset.html:4
+#: kanban_boards/blueprints/user/templates/user/begin_password_reset.html:11
+msgid "Reset your password"
+msgstr "Reinicie su contraseña"
+
+#: kanban_boards/blueprints/user/templates/user/begin_password_reset.html:13
+msgid "We'll send you an email to reset your password."
+msgstr "Le enviaremos un correo electrónico para restablecer su contraseña."
+
+#: kanban_boards/blueprints/user/templates/user/begin_password_reset.html:22
+#: kanban_boards/blueprints/user/templates/user/password_reset.html:19
+msgid "Continue"
+msgstr "Seguir"
+
+#: kanban_boards/blueprints/user/templates/user/begin_password_reset.html:28
+#: kanban_boards/blueprints/user/templates/user/password_reset.html:24
+msgid "Back to login"
+msgstr "Regresar"
+
+#: kanban_boards/blueprints/user/templates/user/login.html:4
+msgid "Sign in to access to your account"
+msgstr "Inicie sesión para acceder a su cuenta"
+
+#: kanban_boards/blueprints/user/templates/user/login.html:11
+msgid "Sign in to continue"
+msgstr "Inicie sesión para continuar"
+
+#: kanban_boards/blueprints/user/templates/user/login.html:25
+#: kanban_boards/blueprints/user/templates/user/signup.html:55
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+#: kanban_boards/blueprints/user/templates/user/login.html:31
+#: kanban_boards/blueprints/user/templates/user/signup.html:49
+msgid "Register"
+msgstr "Registrarse"
+
+#: kanban_boards/blueprints/user/templates/user/login.html:38
+msgid "Forgot your password?"
+msgstr "¿Olvidó su contraseña?"
+
+#: kanban_boards/blueprints/user/templates/user/password_reset.html:4
+#: kanban_boards/blueprints/user/templates/user/password_reset.html:11
+#, fuzzy
+msgid "Enter a new password"
+msgstr "Contraseña actual"
+
+#: kanban_boards/blueprints/user/templates/user/settings.html:3
+msgid "Account settings"
+msgstr "Configuración de cuenta"
+
+#: kanban_boards/blueprints/user/templates/user/settings.html:9
+#: kanban_boards/templates/layouts/app.html:66
+msgid "Settings"
+msgstr "Configuración"
+
+#: kanban_boards/blueprints/user/templates/user/settings.html:14
+msgid "Update email and password"
+msgstr "Actualizar correo y contraseña"
+
+#: kanban_boards/blueprints/user/templates/user/settings.html:18
+msgid "Update language"
+msgstr "Actualizar idioma"
+
+#: kanban_boards/blueprints/user/templates/user/signup.html:4
+msgid "Sign up for a new account"
+msgstr "Registrarse para una cuenta nueva"
+
+#: kanban_boards/blueprints/user/templates/user/signup.html:10
+msgid "What are you waiting for?"
+msgstr "¿Qué está esperando?"
+
+#: kanban_boards/blueprints/user/templates/user/signup.html:35
+#: kanban_boards/templates/layouts/login.html:20
+msgid "Sign up today"
+msgstr "Regístrese hoy"
+
+#: kanban_boards/blueprints/user/templates/user/unconfirmed.html:4
+msgid "Please check your email and confirm your account"
+msgstr "Por favor revise su correo y confirme su cuenta"
+
+#: kanban_boards/blueprints/user/templates/user/unconfirmed.html:11
+msgid "Almost there!"
+msgstr "¡Casi ahí!"
+
+#: kanban_boards/blueprints/user/templates/user/unconfirmed.html:13
+msgid ""
+"You have not confirmed your account. Please check your inbox (and your "
+"spam folder), \n"
+"            you should have received an email with a confirmation link."
+msgstr ""
+"No ha confirmado su cuenta. Por favor revise su bandeja de entrada (y su)"
+"carpeta de spam), \n"
+"            debería haber recibido un correo electrónico con un enlace de confirmación."
+
+#: kanban_boards/blueprints/user/templates/user/unconfirmed.html:17
+msgid "Didn't get the email? "
+msgstr "¿No recibió el correo?"
+
+#: kanban_boards/blueprints/user/templates/user/unconfirmed.html:22
+#, fuzzy
+msgid "Resend Email"
+msgstr "Reenviar Correo"
+
+#: kanban_boards/blueprints/user/templates/user/update_credentials.html:4
+msgid "Update your credentials"
+msgstr ""
+
+#: kanban_boards/blueprints/user/templates/user/update_credentials.html:11
+msgid "Update your sign in information"
+msgstr "Actualice su información de inicio de sesión"
+
+#: kanban_boards/blueprints/user/templates/user/update_credentials.html:12
+msgid "Supply your current password to make any changes."
+msgstr "Proporcione su contraseña actual para realizar cambios."
+
+#: kanban_boards/blueprints/user/templates/user/update_credentials.html:26
+#: kanban_boards/blueprints/user/templates/user/update_locale.html:19
+msgid "Save"
+msgstr "Guardar"
+
+#: kanban_boards/blueprints/user/templates/user/update_credentials.html:32
+#: kanban_boards/blueprints/user/templates/user/update_locale.html:25
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: kanban_boards/blueprints/user/templates/user/update_locale.html:4
+msgid "Update your language settings"
+msgstr "Actualice su configuración de idioma"
+
+#: kanban_boards/blueprints/user/templates/user/update_locale.html:11
+msgid "Update locale settings"
+msgstr "Actualice su configuración regional"
+
+#: kanban_boards/templates/errors/401.html:9
+msgid "You are not authorized to see this page."
+msgstr "Lo siento, no se encuentra autorizado para ver esta página."
+
+#: kanban_boards/templates/errors/404.html:9
+msgid "Sorry, that page does not exist."
+msgstr "Lo siento, esa página no existe."
+
+#: kanban_boards/templates/errors/500.html:9
+msgid "Oops, something went wrong."
+msgstr "Oops, algo salió mal."
+
+#: kanban_boards/templates/layouts/app.html:24
+msgid "Home"
+msgstr "Inicio"
+
+#: kanban_boards/templates/layouts/app.html:27
+msgid "Pricing"
+msgstr "Precio"
+
+#: kanban_boards/templates/layouts/app.html:44
+msgid "Users"
+msgstr "Usuarios"
+
+#: kanban_boards/templates/layouts/app.html:46
+msgid "Coupons"
+msgstr "Cupones"
+
+#: kanban_boards/templates/layouts/app.html:48
+msgid "Invoices"
+msgstr "Recibos"
+
+#: kanban_boards/templates/layouts/app.html:68
+msgid "Log Out"
+msgstr "Cerrar Sessión"
+
+#: kanban_boards/templates/layouts/app.html:73
+msgid "Log In"
+msgstr "Iniciar Sesión"
+
+#: kanban_boards/templates/layouts/app.html:76
+msgid "Sign Up"
+msgstr "Regístrate"
+
+#: kanban_boards/templates/layouts/app.html:86
+msgid "Contact"
+msgstr "Contacto"
+

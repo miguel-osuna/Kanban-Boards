@@ -1,13 +1,13 @@
 {% extends 'layouts/app.html' %}
 {% import 'macros/form.html' as f with context %}
 
-{% block title %}Sign up for a new account{% endblock %}
+{% block title %}{{_("Sign up for a new account")}}{% endblock %}
 
 {% block body %}
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="mt-2 mb-5">What are you waiting for?</h2>
+        <h2 class="mt-2 mb-5">{{_("What are you waiting for?")}}</h2>
         <div class="media">
           <i class="fas fa-fw fa-3x fa-bullhorn text-primary mr-2"></i>
           <div class="media-body">
@@ -32,7 +32,7 @@
       </div>
       <div class="col-md-6 card bg-light">
         {% call f.form_tag('user.signup') %}
-          <h2 class="text-center mt-4 mb-4">Sign up today</h1>
+          <h2 class="text-center mt-4 mb-4">{{_("Sign up today")}}</h1>
 
           {% call f.form_group(form.username, autofocus="autofocus", placeholder="Username") %}
           {% endcall %}
@@ -46,13 +46,13 @@
           <div class="row">
             <div class="col-md-6 mb-4">
               <button type="submit" class="btn btn-primary btn-block">
-                Register
+                {{_("Register")}}
               </button>
             </div>
             <div class="col-md-6 mb-4">
               <a href="{{ url_for('user.login') }}"
                  class="btn btn-outline-secondary btn-block">
-                Sign in
+                {{_("Sign in")}}
               </a>
             </div>
           </div>

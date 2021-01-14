@@ -58,7 +58,6 @@ def create_app(configuration="production"):
     register_commands(app)
     authentication(app, User)
     locale(app)
-
     init_celery(app)
 
     if app.debug:

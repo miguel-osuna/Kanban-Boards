@@ -1,6 +1,7 @@
 from functools import wraps
 
 from flask import flash, redirect
+from flask_babel import lazy_gettext as _
 from flask_login import current_user
 
 
@@ -38,7 +39,7 @@ def role_required(*roles):
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if current_user.role not in roles:
-                flash("You do not have permission to do that.", "error")
+                flash(_("You do not have permission to do that."), "error")
                 return redirect("/")
 
             return f(*args, **kwargs)
@@ -60,11 +61,10 @@ def confirmed_required(url="/account/unconfirmed"):
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if current_user.confirmed is False:
-                flash("Please confirm your account!", "error")
+                flash(_("Please confirm your account!"), "error")
                 return redirect(url)
             return f(*args, **kwargs)
 
         return decorated_function
 
     return decorator
-

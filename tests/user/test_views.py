@@ -17,8 +17,8 @@ class TestLogin(ViewTestMixin):
         assert response.status_code == 200
 
     def test_login_activity(self):
-        """ Login successfully and update the activity stats.
-        
+        """Login successfully and update the activity stats.
+
         This executes the users fixture to add different users to the database.
         """
         user = User.find_by_identity("admin@local.host")
@@ -174,7 +174,10 @@ class TestAccountConfirmation(ViewTestMixin):
         self.login(identity="unconfirmed@local.host")
 
         response = self.client.get(
-            url_for("user.account_confirmation", confirmation_token="123",),
+            url_for(
+                "user.account_confirmation",
+                confirmation_token="123",
+            ),
             follow_redirects=True,
         )
         assert_status_with_message(

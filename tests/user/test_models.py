@@ -14,4 +14,3 @@ class TestUser(object):
     def test_deserialize_token_tampered(self, token):
         user = User.deserialize_token(f"{token}123")
         assert user is None
-

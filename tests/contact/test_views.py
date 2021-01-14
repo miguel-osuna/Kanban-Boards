@@ -23,4 +23,3 @@ class TestContact(object):
             response,
             "Thank you for your message. We will contact you as soon as possible.",
         )
-

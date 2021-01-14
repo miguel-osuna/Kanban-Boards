@@ -21,10 +21,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for("page.home") }}">Home</a>
+        <a class="nav-link" href="{{ url_for("page.home") }}">{{_("Home")}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">{{_("Pricing")}}</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -41,11 +41,11 @@
           Admin
         </a>
         <div class="dropdown-menu" aria-labelledb="navbarDropdown">
-          <a class="dropdown-item" href="#">Users</a>
+          <a class="dropdown-item" href="#">{{_("Users")}}</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Coupons</a>
+          <a class="dropdown-item" href="#">{{_("Coupons")}}</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Invoices</a>
+          <a class="dropdown-item" href="#">{{_("Invoices")}}</a>
         </div>
       </li>
       {% endif %}
@@ -63,17 +63,17 @@
           Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ url_for("user.settings") }}">Settings</a>
+          <a class="dropdown-item" href="{{ url_for("user.settings") }}">{{_("Settings")}}</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ url_for("user.logout") }}">Log Out</a>
+          <a class="dropdown-item" href="{{ url_for("user.logout") }}">{{_("Log Out")}}</a>
         </div>
       </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for("user.login") }}">Log In</a>
+          <a class="nav-link" href="{{ url_for("user.login") }}">{{_("Log In")}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for("user.signup") }}">Sign Up</a>
+          <a class="nav-link" href="{{ url_for("user.signup") }}">{{_("Sign Up")}}</a>
         </li>      
       {% endif %}
     </ul>
@@ -83,12 +83,12 @@
 
 {% block footer %}
 <li class="list-inline-item">
-  <a href="{{ url_for('contact.index') }}">Contact</a>
+  <a href="{{ url_for('contact.index') }}">{{_("Contact")}}</a>
 </li>
 <li class="list-inline-item">
-  <a href="{{ url_for('page.privacy') }}">Privacy Policy</a>
+  <a href="{{ url_for('page.privacy') }}">{{_("Privacy Policy")}}</a>
 </li>
 <li class="list-inline-item">
-  <a href="{{ url_for('page.terms') }}">Terms of Service</a>
+  <a href="{{ url_for('page.terms') }}">{{_("Terms of Service")}}</a>
 </li>
 {% endblock footer %}

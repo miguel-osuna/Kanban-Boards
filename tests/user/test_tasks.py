@@ -24,4 +24,3 @@ class TestTasks(object):
 
             assert len(outbox) == 1
             assert token in outbox[0].body
-

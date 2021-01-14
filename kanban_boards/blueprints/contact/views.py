@@ -1,4 +1,5 @@
 from flask import Blueprint, flash, redirect, request, url_for, render_template
+from flask_babel import gettext as _
 
 from kanban_boards.blueprints.contact.forms import ContactForm
 
@@ -21,7 +22,7 @@ def index():
         deliver_contact_email.delay(email, message)
 
         flash(
-            "Thank you for your message. We will contact you as soon as possible.",
+            _("Thank you for your message. We will contact you as soon as possible."),
             "success",
         )
         return redirect(url_for("contact.index"))

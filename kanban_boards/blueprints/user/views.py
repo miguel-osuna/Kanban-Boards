@@ -1,5 +1,6 @@
 from flask import Blueprint, redirect, request, flash, url_for, render_template
 from flask_login import login_required, login_user, current_user, logout_user
+from flask_babel import gettext as _
 
 from lib.safe_next_url import safe_next_url
 from lib.util_datetime import tzaware_datetime
@@ -37,8 +38,10 @@ def signup():
         # Begin account confirmation by sending an email to the user
         user.initialize_account_confirmation(user.email)
         flash(
-            "Thank you for signing up with Tides! An email has been sent to {}".format(
-                user.email
+            _(
+                "Thank you for signing up with Tides! An email has been sent to {}".format(
+                    user.email
+                )
             ),
             "success",
         )
@@ -82,7 +85,7 @@ def login():
                 return redirect(url_for("user.settings"))
 
         else:
-            flash("Sorry, wrong credentials.", "error")
+            flash(_("Sorry, wrong credentials."), "error")
 
     return render_template("user/login.html", form=form)
 
@@ -92,7 +95,7 @@ def login():
 def logout():
     """ Route for loging out the user. """
     logout_user()
-    flash("You have been logged out.", "success")
+    flash(_("You have been logged out."), "success")
     return redirect(url_for("user.login"))
 
 
@@ -109,7 +112,7 @@ def begin_password_reset():
     if form.validate_on_submit():
         user = User.initialize_password_reset(request.form.get("identity"))
 
-        flash("An email has been sent to {0}".format(user.email), "success")
+        flash(_("An email has been sent to {0}".format(user.email)), "success")
         return redirect(url_for("user.login"))
 
     return render_template("user/begin_password_reset.html", form=form)
@@ -127,7 +130,7 @@ def password_reset():
         user = User.deserialize_token(request.form.get("reset_token"))
 
         if user is None:
-            flash("Your reset token has expired or was tampered with.", "error")
+            flash(_("Your reset token has expired or was tampered with."), "error")
             return redirect(url_for("user.begin_password_reset"))
 
         form.populate_obj(user)
@@ -135,7 +138,7 @@ def password_reset():
         user.save()
 
         if login_user(user):
-            flash("Your password has been reset.", "success")
+            flash(_("Your password has been reset."), "success")
             return redirect(url_for("user.settings"))
 
     return render_template("user/password_reset.html", form=form)
@@ -150,13 +153,13 @@ def unconfirmed():
 
     # Redirect user if he is already confirmed to avoid sending any emails
     if current_user.confirmed:
-        flash("Your account is already confirmed.", "success")
+        flash(_("Your account is already confirmed."), "success")
         return redirect(url_for("user.settings"))
 
     # Send a new email if the user presses the button
     if form.validate_on_submit():
         current_user.initialize_account_confirmation(current_user.email)
-        flash("A new confirmation email has been sent.", "success")
+        flash(_("A new confirmation email has been sent."), "success")
         return redirect(url_for("user.unconfirmed"))
 
     return render_template("user/unconfirmed.html", form=form)
@@ -172,12 +175,12 @@ def account_confirmation():
 
     if user is None:
         print(user)
-        flash("Your confirmation token has expired or was tampered with.", "error")
+        flash(_("Your confirmation token has expired or was tampered with."), "error")
         return redirect(url_for("user.login"))
 
     # Notice the user in case he tries to confirm his account again
     if user.confirmed:
-        flash("Your account has been already confirmed.", "success")
+        flash(_("Your account has been already confirmed."), "success")
 
     # Confirm the user account
     else:
@@ -185,7 +188,7 @@ def account_confirmation():
         user.confirmed_on = tzaware_datetime()
         user.save()
 
-        flash("Your account has been confirmed.", "success")
+        flash(_("Your account has been confirmed."), "success")
 
     login_user(user)
     return redirect(url_for("user.settings"))
@@ -219,7 +222,7 @@ def update_credentials():
 
         current_user.save()
 
-        flash("Your credentials have been updated.", "success")
+        flash(_("Your credentials have been updated."), "success")
         return redirect(url_for("user.settings"))
 
     return render_template("user/update_credentials.html", form=form)
@@ -237,7 +240,7 @@ def update_locale():
         form.populate_obj(current_user)
         current_user.save()
 
-        flash("Your locale settings have been updated.", "success")
+        flash(_("Your locale settings have been updated."), "success")
         return redirect(url_for("user.settings"))
 
     return render_template("user/update_locale.html", form=form)

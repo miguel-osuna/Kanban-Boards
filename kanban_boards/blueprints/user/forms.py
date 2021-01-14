@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_babel import lazy_gettext as _
 from wtforms import HiddenField, StringField, PasswordField, SelectField, BooleanField
 from wtforms.validators import DataRequired, Length, Optional, Regexp
 from wtforms_alchemy.validators import Unique
@@ -16,10 +17,10 @@ LANGUAGES = Config.LANGUAGES
 
 
 class SignupForm(ModelForm):
-    username_message = "Letters, numbers and underscores only please."
+    username_message = _("Letters, numbers and underscores only please.")
 
     username = StringField(
-        "Username",
+        _("Username"),
         validators=[
             Unique(User.username),
             DataRequired(),
@@ -28,45 +29,45 @@ class SignupForm(ModelForm):
         ],
     )
     email = StringField(
-        "Email", validators=[DataRequired(), Email(), Unique(User.email)]
+        _("Email"), validators=[DataRequired(), Email(), Unique(User.email)]
     )
-    password = PasswordField("Password", validators=[DataRequired(), Length(8, 128)])
+    password = PasswordField(_("Password"), validators=[DataRequired(), Length(8, 128)])
 
 
 class LoginForm(FlaskForm):
     next = HiddenField()
     identity = StringField(
-        "Username or email", validators=[DataRequired(), Length(3, 254)]
+        _("Username or email"), validators=[DataRequired(), Length(3, 254)]
     )
-    password = PasswordField("Password", validators=[DataRequired(), Length(8, 128)])
-    remember = BooleanField("Remember me?")
+    password = PasswordField(_("Password"), validators=[DataRequired(), Length(8, 128)])
+    remember = BooleanField(_("Remember me?"))
 
 
 class BeginPasswordResetForm(FlaskForm):
     identity = StringField(
-        "Username or Email",
+        _("Username or Email"),
         validators=[DataRequired(), Length(3, 254), ensure_identity_exists],
     )
 
 
 class PasswordResetForm(FlaskForm):
     reset_token = HiddenField()
-    password = PasswordField("Password", validators=[DataRequired(), Length(8, 128)])
+    password = PasswordField(_("Password"), validators=[DataRequired(), Length(8, 128)])
 
 
 class UpdateCredentialsForm(ModelForm):
     current_password = PasswordField(
-        "Current Password",
+        _("Current Password"),
         validators=[DataRequired(), Length(8, 128), ensure_existing_password_matches],
     )
 
     email = EmailField(validators=[Email(), Unique(User.email)])
-    password = PasswordField("New Password", [Optional(), Length(8, 128)])
+    password = PasswordField(_("New Password"), [Optional(), Length(8, 128)])
 
 
 class UpdateLocaleForm(FlaskForm):
     locale = SelectField(
-        "Account language preference",
+        _("Account language preference"),
         validators=[DataRequired()],
         choices=choices_from_dict(LANGUAGES, prepend_blank=False),
     )

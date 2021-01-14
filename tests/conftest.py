@@ -8,7 +8,7 @@ from kanban_boards.blueprints.user.models import User
 @pytest.fixture(scope="session")
 def app():
     """
-    Setup our flask test app, this only gets executed once. 
+    Setup our flask test app, this only gets executed once.
 
     :return: Flask app
     """
@@ -141,4 +141,3 @@ def users(db):
     db.session.commit()
 
     return db
-
