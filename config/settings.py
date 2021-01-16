@@ -104,6 +104,7 @@ class TestingConfig(Config):
     DEBUG = True
     TESTING = True
     SECRET_KEY = "testing"
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
 
     # Werkzeug Configuration
     WERKZEUG_DEBUG_PIN = "off"

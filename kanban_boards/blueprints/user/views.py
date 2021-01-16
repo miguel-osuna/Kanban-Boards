@@ -173,7 +173,6 @@ def account_confirmation():
     user = User.deserialize_token(confirmation_token)
 
     if user is None:
-        print(user)
         flash(_("Your confirmation token has expired or was tampered with."), "error")
         return redirect(url_for("user.login"))
 

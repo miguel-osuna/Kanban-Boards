@@ -233,7 +233,7 @@ def authentication(app, user_model):
         user = user_model.query.get(user_id)
 
         if not user.is_active():
-            login_manager.login_message = _("This account has been disabled.")
+            login_manager.login_message = "This account has been disabled."
             login_manager.login_message_category = "error"
             return None
 
