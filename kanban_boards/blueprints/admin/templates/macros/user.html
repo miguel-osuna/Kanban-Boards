@@ -1,0 +1,5 @@
+{% macro role_icon_for(user) -%} {% if user.role == 'admin' %}
+<i class="fas fa-2x fa-user-shield" title="Admin"></i>
+{% else %}
+<i class="fas fa-2x fa-user text-muted" title="Member"></i>
+{% endif %} {% endmacro %}

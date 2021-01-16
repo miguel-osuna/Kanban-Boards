@@ -29,25 +29,7 @@
     </ul>
     <ul class="navbar-nav">
       {% if current_user.role == "admin" %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"
-           href="#" class
-           id="navbarDropdown"
-           role="button"
-           data-toggle="dropdown"
-           aria-hashpopup="true"
-           aria-expanded="false"
-        >
-          Admin
-        </a>
-        <div class="dropdown-menu" aria-labelledb="navbarDropdown">
-          <a class="dropdown-item" href="#">{{_("Users")}}</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">{{_("Coupons")}}</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">{{_("Invoices")}}</a>
-        </div>
-      </li>
+        {% include "admin/_menu.html" %}
       {% endif %}
       {% if current_user.is_authenticated %}
       <li class="nav-item dropdown">

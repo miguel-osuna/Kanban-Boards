@@ -3,6 +3,7 @@ import logging
 from logging.handlers import SMTPHandler
 
 from flask import Flask, render_template, request
+from flask_babel import _
 from cli import register_cli_commands
 from flask_login import current_user
 from werkzeug.debug import DebuggedApplication
@@ -11,7 +12,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from config.settings import app_config
 
 # Blueprint imports
-from kanban_boards.blueprints import page, contact, user
+from kanban_boards.blueprints import page, contact, user, admin
 
 # Extension imports
 from kanban_boards.extensions import (
@@ -96,6 +97,7 @@ def register_blueprints(app):
     app.register_blueprint(page)
     app.register_blueprint(contact)
     app.register_blueprint(user)
+    app.register_blueprint(admin)
     return None
 
 
@@ -223,13 +225,15 @@ def authentication(app, user_model):
     :return: None
     """
     login_manager.login_view = "user.login"
+    login_manager.login_message = _("Please log in to access this page.")
+    login_manager.login_message_category = "error"
 
     @login_manager.user_loader
     def load_user(user_id):
         user = user_model.query.get(user_id)
 
         if not user.is_active():
-            login_manager.login_message = "This account has been disabled."
+            login_manager.login_message = _("This account has been disabled.")
             login_manager.login_message_category = "error"
             return None
 

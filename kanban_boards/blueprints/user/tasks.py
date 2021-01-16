@@ -56,3 +56,15 @@ def deliver_password_reset_email(user_id, reset_token):
         template="user/mail/password_reset",
         ctx=ctx,
     )
+
+
+@celery.task()
+def delete_users(ids):
+    """
+    Delete users and potentially cancel their subscription.
+
+    :param ids: List of ids to be deleted
+    :type ids: list
+    :return: int
+    """
+    return User.bulk_delete(ids)

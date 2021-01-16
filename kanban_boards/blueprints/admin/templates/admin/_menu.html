@@ -1,0 +1,19 @@
+<li class="nav-item dropdown">
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    class
+    id="navbarDropdown"
+    role="button"
+    data-toggle="dropdown"
+    aria-hashpopup="true"
+    aria-expanded="false"
+  >
+    Admin
+  </a>
+  <div class="dropdown-menu" aria-labelledb="navbarDropdown">
+    <a class="dropdown-item" href="{{ url_for("admin.dashboard" )}}">{{_("Dashboard")}}</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="{{ url_for("admin.users") }}">{{_("Users")}}</a>
+  </div>
+</li>
