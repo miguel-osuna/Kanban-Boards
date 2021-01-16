@@ -12,8 +12,8 @@
     Admin
   </a>
   <div class="dropdown-menu" aria-labelledb="navbarDropdown">
-    <a class="dropdown-item" href="{{ url_for("admin.dashboard" )}}">{{_("Dashboard")}}</a>
+    <a class="dropdown-item" href="{{ url_for("admin.dashboard" )}}">{{ gettext("Dashboard") | safe }}</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="{{ url_for("admin.users") }}">{{_("Users")}}</a>
+    <a class="dropdown-item" href="{{ url_for("admin.users") }}">{{ gettext("Users") | safe }}</a>
   </div>
 </li>

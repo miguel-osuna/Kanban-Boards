@@ -6,7 +6,7 @@
 <div class="container">
     <div class="col-md-12">
         <h2 class="h1">401</h2>
-        <p>{{_("You are not authorized to see this page.")}}</p>
+        <p>{{ gettext("You are not authorized to see this page.") | safe }}</p>
     </div>
 </div>
 {% endblock %}

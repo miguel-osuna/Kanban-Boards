@@ -1,14 +1,14 @@
 {% extends "layouts/login.html" %}
 {% import "macros/form.html" as f with context %}
 
-{% block title %}{{_("Sign in to access to your account")}}{% endblock %}
+{% block title %}{{ gettext("Sign in to access to your account") | safe }}{% endblock %}
 
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 card bg-light">
             {% call f.form_tag("user.login") %}
-                <h2 class="mt-2 mb-4 text-center">{{_("Sign in to continue")}}</h2>
+                <h2 class="mt-2 mb-4 text-center">{{ gettext("Sign in to continue") | safe }}</h2>
 
                 {% call f.form_group(form.identity, autofocus="autofocus") %}
                 {% endcall %}
@@ -22,20 +22,20 @@
                 <div class="row">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary btn-block">
-                            {{_("Sign in")}}
+                            {{ gettext("Sign in") | safe }}
                         </button>
                     </div>
                     <div class="col-md-6">
                         <a href="{{ url_for("user.signup") }}"
                            class="btn btn-outline-secondary btn-block">
-                           {{_("Register")}}
+                           {{ gettext("Register") | safe }}
                         </a>
                     </div>
                 </div>
             {% endcall %}
             <div class="text-center mt-4 mb-2">
                 <a href={{ url_for("user.begin_password_reset") }} class="text-muted">
-                    {{_("Forgot your password?")}}
+                    {{ gettext("Forgot your password?") | safe }}
                 </a>
             </div>
         </div>

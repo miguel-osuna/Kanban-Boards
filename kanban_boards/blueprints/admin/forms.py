@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from flask_wtf import FlaskForm
-from flask_babel import _
+from flask_babel import lazy_gettext as _
 from wtforms import (
     SelectField,
     StringField,
@@ -15,19 +15,19 @@ from kanban_boards.blueprints.user.models import User
 
 
 class SearchForm(FlaskForm):
-    q = StringField("Search terms", validators=[Optional(), Length(1, 256)])
+    q = StringField(_("Search terms"), validators=[Optional(), Length(1, 256)])
 
 
 class BulkDeleteForm(FlaskForm):
     SCOPE = OrderedDict(
         [
-            ("all_selected_items", "All selected items"),
-            ("all_search_results", "All search results"),
+            ("all_selected_items", _("All selected items")),
+            ("all_search_results", _("All search results")),
         ]
     )
 
     scope = SelectField(
-        "Privileges",
+        _("Privileges"),
         validators=[DataRequired()],
         choices=choices_from_dict(SCOPE, prepend_blank=False),
     )
@@ -46,7 +46,7 @@ class UserForm(ModelForm):
     )
 
     role = SelectField(
-        "Privileges",
+        _("Privileges"),
         validators=[DataRequired()],
         choices=choices_from_dict(User.ROLE, prepend_blank=False),
     )

@@ -1,6 +1,6 @@
 {% extends 'layouts/app.html' %}
 
-{% block title %}{{_("Admin - Dashboard")}}{% endblock %}
+{% block title %}{{ gettext("Admin - Dashboard") | safe }}{% endblock %}
 
 {% block body %}
   <div class="container">
@@ -8,7 +8,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-header">
-            <a href="{{ url_for('admin.users') }}">Users</a>
+            <a href="{{ url_for('admin.users') }}">{{ gettext("Users") | safe }}</a>
             <span class="float-right text-muted">
               {{ group_and_count_users.total }}
             </span>

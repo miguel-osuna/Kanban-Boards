@@ -1,25 +1,25 @@
 {% extends "layouts/login.html" %}
 {% import "macros/form.html" as f with context %}
 
-{% block title %}{{_("Please check your email and confirm your account")}}{% endblock %}
+{% block title %}{{ gettext("Please check your email and confirm your account") | safe }}{% endblock %}
 
 {% block body %}
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3 card">
       {% call f.form_tag("user.unconfirmed") %}
-        <h2 class="mt-2 mb-2">{{_("Almost there!")}}</h2>
+        <h2 class="mt-2 mb-2">{{ gettext("Almost there!") | safe }}</h2>
         <p class="mt-2 mb-2">
-            {{_("You have not confirmed your account. Please check your inbox (and your spam folder), 
-            you should have received an email with a confirmation link.")}}
+            {{ gettext("You have not confirmed your account. Please check your inbox (and your spam folder), 
+            you should have received an email with a confirmation link.") | safe }}
         </p>
         <p class="mt-2 mb-2">
-            {{_("Didn't get the email? ")}}
+            {{ gettext("Didn't get the email?") | safe }}
         </p>
         <div class="row mb-3">
           <div class="col-md-6">
             <button type="submit" class="btn btn-primary btn-block">
-              {{_("Resend Email")}}
+              {{ gettext("Resend Email") | safe }}
             </button>
           </div>
         </div>

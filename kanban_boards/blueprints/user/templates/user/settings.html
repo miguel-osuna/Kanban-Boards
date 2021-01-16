@@ -1,25 +1,25 @@
 {% extends 'layouts/app.html' %}
 
-{% block title %}{{_("Account settings")}}{% endblock %}
+{% block title %}{{ gettext("Account settings") | safe }}{% endblock %}
 
 {% block body %}
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-        <h2>{{_("Settings")}}</h2>
+        <h2>{{ gettext("Settings") | safe }}</h2>
         <h5 class="text-muted">{{ current_user.email }}</h5>
         <div class="list-group">
           <a href="{{ url_for('user.update_credentials') }}"
              class="list-group-item list-group-item-action">
-            {{_("Update email and password")}}
+            {{ gettext("Update email and password") | safe }}
           </a>
           <a href="{{ url_for('user.update_locale') }}"
              class="list-group-item list-group-item-action">
-            {{_("Update language")}}
+            {{ gettext("Update language") | safe }}
           </a>
           <span class="list-group-item text-muted">
-            {{_("Username")}}:
-            <strong> {{current_user.username }}</strong>
+            {{ gettext("Username") | safe }}:
+            <strong> {{ current_user.username }}</strong>
           </span>
         </div>
       </div>

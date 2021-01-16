@@ -17,6 +17,6 @@
 
 {% block footer %}
 <li class="list-inline-item">
-  <a href="{{ url_for('user.signup') }}">{{_("Sign up today")}}</a>
+  <a href="{{ url_for('user.signup') }}">{{ gettext("Sign up today") | safe }}</a>
 </li>
 {% endblock %}

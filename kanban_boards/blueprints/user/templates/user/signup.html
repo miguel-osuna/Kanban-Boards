@@ -1,13 +1,13 @@
 {% extends 'layouts/app.html' %}
 {% import 'macros/form.html' as f with context %}
 
-{% block title %}{{_("Sign up for a new account")}}{% endblock %}
+{% block title %}{{ gettext("Sign up for a new account") | safe }}{% endblock %}
 
 {% block body %}
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="mt-2 mb-5">{{_("What are you waiting for?")}}</h2>
+        <h2 class="mt-2 mb-5">{{ gettext("What are you waiting for?") | safe }}</h2>
         <div class="media">
           <i class="fas fa-fw fa-3x fa-bullhorn text-primary mr-2"></i>
           <div class="media-body">
@@ -32,12 +32,12 @@
       </div>
       <div class="col-md-6 card bg-light">
         {% call f.form_tag('user.signup') %}
-          <h2 class="text-center mt-4 mb-4">{{_("Sign up today")}}</h1>
+          <h2 class="text-center mt-4 mb-4">{{ gettext("Sign up today") | safe }}</h1>
 
-          {% call f.form_group(form.username, autofocus="autofocus", placeholder="Username") %}
+          {% call f.form_group(form.username, autofocus="autofocus", placeholder=gettext("Username") | safe ) %}
           {% endcall %}
 
-          {% call f.form_group(form.email, placeholder='Email address') %}
+          {% call f.form_group(form.email, placeholder=gettext("Email address") | safe) %}
           {% endcall %}
 
           {% call f.form_group(form.password) %}
@@ -46,13 +46,13 @@
           <div class="row">
             <div class="col-md-6 mb-4">
               <button type="submit" class="btn btn-primary btn-block">
-                {{_("Register")}}
+                {{ gettext("Register") | safe }}
               </button>
             </div>
             <div class="col-md-6 mb-4">
               <a href="{{ url_for('user.login') }}"
                  class="btn btn-outline-secondary btn-block">
-                {{_("Sign in")}}
+                {{ gettext("Sign in") | safe }}
               </a>
             </div>
           </div>

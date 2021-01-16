@@ -1,14 +1,14 @@
 {% extends 'layouts/app.html' %}
 {% import 'macros/form.html' as f with context %}
 
-{% block title %}{{_("Update your language settings")}}{% endblock %}
+{% block title %}{{ gettext("Update your language settings") | safe }}{% endblock %}
 
 {% block body %}
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3 card bg-light">
         {% call f.form_tag('user.update_locale') %}
-          <h2 class="mt-2 mb-4">{{_("Update locale settings")}}</h2>
+          <h2 class="mt-2 mb-4">{{ gettext("Update locale settings") | safe }}</h2>
 
           {% call f.form_group(form.locale) %}
           {% endcall %}
@@ -16,13 +16,13 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <button type="submit" class="btn btn-primary btn-block">
-                {{_("Save")}}
+                {{ gettext("Save") | safe }}
               </button>
             </div>
             <div class="col-md-6">
               <a href="{{ url_for('user.settings') }}"
                  class="btn btn-outline-secondary btn-block">
-                {{_("Cancel")}}
+                {{ gettext("Cancel") | safe }}
               </a>
             </div>
           </div>

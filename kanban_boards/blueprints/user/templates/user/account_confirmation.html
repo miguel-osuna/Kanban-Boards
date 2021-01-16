@@ -1,7 +1,7 @@
 {% extends "layouts/login.html" %}
 {% import "macros/form.html" as f with context %}
 
-{% block title %}{{_("Confirm your account")}}{% endblock %}
+{% block title %}{{ getext("Confirm your account") | safe }}{% endblock %}
 
 {% block body %}
 

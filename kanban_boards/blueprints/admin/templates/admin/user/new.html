@@ -1,6 +1,6 @@
 {% extends "layouts/app.html" %}
 
-{% block title %}{{_("Admin - Users / Add")}}{% endblock %}
+{% block title %}{{ gettext("Admin - Users / Add") | safe }}{% endblock %}
 
 {% block body %}
   {% include "admin/_form.html" with context %}

@@ -3,13 +3,13 @@
 {% if request.endpoint.endswith('new') %}
   {% set endpoint = 'admin.users_new' %}
   {% set form_kwargs = {} %}
-  {% set legend = 'Add a new user' %}
-  {% set button = 'Add' %}
+  {% set legend = gettext('Add a new user') | safe %}
+  {% set button = gettext('Add') | safe %}
 {% else %}
   {% set endpoint = 'admin.users_edit' %}
   {% set form_kwargs = {'id': user.id} %}
-  {% set legend = 'Update this user' %}
-  {% set button = 'Save' %}
+  {% set legend = gettext('Update this user') | safe %}
+  {% set button = gettext('Save') | safe %}
 {% endif %}
 
 <div class="container">
@@ -18,7 +18,7 @@
       {% call f.form_tag(endpoint, **form_kwargs) %}
         <h2 class="mb-4">{{ legend }}</h2>
         <div class="form-group">
-          <label class="control-label"><strong>Registered</strong></label>
+          <label class="control-label"><strong>{{ gettext("Registered") | safe }}</strong></label>
           <p class="form-control-static">
             <time class="js-from-now" data-datetime="{{ user.created_on }}">
               {{ user.created_on }}
@@ -26,7 +26,7 @@
           </p>
         </div>
         <div class="form-group">
-          <label class="control-label"><strong>E-mail address</strong></label>
+          <label class="control-label"><strong>{{ gettext("E-mail address") | safe }}</strong></label>
           <p class="form-control-static">
             {{ user.email }}
           </p>
@@ -51,20 +51,20 @@
           <div class="col-md-6">
             <a href="{{ url_for('admin.users') }}"
                 class="btn btn-outline-secondary btn-block">
-              Cancel
+              {{ gettext("Cancel") | safe }}
             </a>
           </div>
         </div>
       {% endcall %}
     </div>
     <div class="col-md-5 offset-md-2">      
-      <h2 class="mb-4 mt-5">Login activity</h2>
+      <h2 class="mb-4 mt-5">{{ gettext("Login activity") | safe }}</h2>
       <div class="card">
         <div class="card-body">
           <dl class="mb-0">
-            <dt>Sign in count</dt>
+            <dt>{{ gettext("Sign in count") | safe }}</dt>
             <dd>{{ user.sign_in_count }}</dd>
-            <dt>Current sign in date</dt>
+            <dt>{{ gettext("Current sign in date") | safe }}</dt>
             <dd>
               {% if user.current_sign_in_on %}
                 <time class="js-from-now"
@@ -73,9 +73,9 @@
                 </time>
               {% endif %}
             </dd>
-            <dt>Current sign in IP address</dt>
+            <dt>{{ gettext("Current sign in IP address") | safe }}</dt>
             <dd>{{ user.current_sign_in_ip }}</dd>
-            <dt>Previous sign in date</dt>
+            <dt>{{ gettext("Previous sign in date") | safe }}</dt>
             <dd>
               {% if user.last_sign_in_on %}
                 <time class="js-from-now"
@@ -84,7 +84,7 @@
                 </time>
               {% endif %}
             </dd>
-            <dt>Previous sign in IP address</dt>
+            <dt>{{ gettext("Previous sign in IP address") | safe }}</dt>
             <dd>{{ user.last_sign_in_ip }}</dd>
           </dl>
         </div>

@@ -80,7 +80,7 @@
       </div>
       <input type="text" class="form-control"
              id="q" name="q" value="{{ request.args.get('q', '') }}"
-             placeholder="Search by typing, then press enter...">
+             placeholder="{{ gettext("Search by typing, then press enter...") | safe }}">
     </div>
   {% endcall %}
 {%- endmacro -%}

@@ -21,10 +21,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for("page.home") }}">{{_("Home")}}</a>
+        <a class="nav-link" href="{{ url_for("page.home") }}">{{ gettext("Home") | safe }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{_("Pricing")}}</a>
+        <a class="nav-link" href="#">{{ gettext("Pricing") | safe }}</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -45,17 +45,17 @@
           Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ url_for("user.settings") }}">{{_("Settings")}}</a>
+          <a class="dropdown-item" href="{{ url_for("user.settings") }}">{{ gettext("Settings") | safe }}</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ url_for("user.logout") }}">{{_("Log Out")}}</a>
+          <a class="dropdown-item" href="{{ url_for("user.logout") }}">{{ gettext("Log Out") | safe }}</a>
         </div>
       </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for("user.login") }}">{{_("Log In")}}</a>
+          <a class="nav-link" href="{{ url_for("user.login") }}">{{ gettext("Log In") | safe }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for("user.signup") }}">{{_("Sign Up")}}</a>
+          <a class="nav-link" href="{{ url_for("user.signup") }}">{{ gettext("Sign Up") | safe }}</a>
         </li>      
       {% endif %}
     </ul>
@@ -65,12 +65,12 @@
 
 {% block footer %}
 <li class="list-inline-item">
-  <a href="{{ url_for('contact.index') }}">{{_("Contact")}}</a>
+  <a href="{{ url_for('contact.index') }}">{{ gettext("Contact") | safe }}</a>
 </li>
 <li class="list-inline-item">
-  <a href="{{ url_for('page.privacy') }}">{{_("Privacy Policy")}}</a>
+  <a href="{{ url_for('page.privacy') }}">{{ gettext("Privacy Policy") | safe }}</a>
 </li>
 <li class="list-inline-item">
-  <a href="{{ url_for('page.terms') }}">{{_("Terms of Service")}}</a>
+  <a href="{{ url_for('page.terms') }}">{{ gettext("Terms of Service") | safe }}</a>
 </li>
 {% endblock footer %}

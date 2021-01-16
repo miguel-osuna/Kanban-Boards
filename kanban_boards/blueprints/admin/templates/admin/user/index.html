@@ -3,7 +3,7 @@
 {% import 'macros/form.html' as f with context %}
 {% import 'macros/user.html' as account %}
 
-{% block title %}Admin - Users / List{% endblock %}
+{% block title %}{{ gettext("Admin - Users / List") | safe }}{% endblock %}
 
 {% block body %}
   <div class="container">
@@ -12,13 +12,13 @@
         {{ f.search('admin.users') }}
 
         {% if users.total == 0 %}
-          <h3>No results found</h3>
+          <h3>{{ gettext("No results found") | safe }}</h3>
 
           {% if request.args.get('q') %}
-            <p>Try limiting or removing your search terms.</p>
+            <p>{{ gettext("Try limiting or removing your search terms.") | safe }}</p>
           {% else %}
-            <p>There are no users present,
-               you should <a href="{{ url_for('user.signup') }}">sign up</a>.</p>
+            <p>{{ gettext("There are no users present,
+               you should") | safe }} <a href="{{ url_for('user.signup') }}">{{ gettext("sign up") | safe }}</a>.</p>
           {% endif %}
         {% else %}
           {% call f.form_tag('admin.users_bulk_delete') %}
@@ -30,7 +30,7 @@
                       {{ f.field(bulk_form.scope, inline=True) }}
                       <button type="submit"
                       class="btn btn-primary btn-sm center ml-2">
-                        Delete items
+                        {{ gettext("Delete items") | safe }}
                       </button>                      
                     </div>
                   </th>
@@ -41,16 +41,16 @@
                     <input id="select_all" name="select_all" type="checkbox">
                   </th>
                   <th class="js-col-header">
-                    {{ items.sort('created_on', 'Registered') }}
+                    {{ items.sort('created_on', gettext('Registered')) }}
                   </th>
                   <th class="js-col-header">
-                    {{ items.sort('name') }}
+                    {{ items.sort('name', gettext("Name")) }}
                   </th>
                   <th class="js-col-header">
-                    {{ items.sort('last_sign_in_on', 'Activity') }}
+                    {{ items.sort('last_sign_in_on', gettext('Activity')) }}
                   </th>
                   <th class="js-col-header">
-                    {{ items.sort('sign_in_count', 'Sign in count') }}
+                    {{ items.sort('sign_in_count', gettext('Sign in count')) }}
                   </th>
                 </tr>
               </thead>
@@ -82,7 +82,7 @@
                   </td>
                   <td class="small">
                     {% if user.last_sign_in_on %}
-                      Last seen:
+                      {{ gettext("Last seen") | safe }}:
                       <time class="js-from-now"
                             data-datetime="{{ user.last_sign_in_on }}">
                         {{ user.last_sign_in_on }}

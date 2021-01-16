@@ -17,7 +17,7 @@
   {% endif %}
 
   {% if sort == field %}
-    {% set css = direction %}
+    {% set css = "direction" %}
   {% else %}
     {% set css = 'sort' %}
   {% endif %}
@@ -38,13 +38,13 @@
     <li class="page-item {{ 'disabled' if resource.page == 1 }}">
       <a href="{{ url_for(request.endpoint, page=1, **args) }}"
          class="page-link" aria-label="First">
-        &laquo; First
+        &laquo; {{ gettext("First") | safe }}
       </a>
     </li>
     <li class="page-item {{ 'disabled' if not resource.has_prev }}">
       <a href="{{ url_for(request.endpoint, page=resource.page - 1, **args) }}"
          class="page-link" aria-label="Previous">
-        Prev
+        {{ gettext("Prev") | safe }}
       </a>
     </li>
   {%- for page in resource.iter_pages() %}
@@ -66,13 +66,13 @@
     <li class="page-item {{ 'disabled' if not resource.has_next }}">
       <a href="{{ url_for(request.endpoint, page=resource.page + 1, **args) }}"
          class="page-link" aria-label="Next">
-        Next
+        {{ gettext("Next") | safe }}
       </a>
     </li>
     <li class="page-item {{ 'disabled' if resource.page == resource.pages }}">
       <a href="{{ url_for(request.endpoint, page=resource.pages, **args) }}"
          class="page-link" aria-label="Last">
-        Last &raquo;
+        {{ gettext("Last") | safe }} &raquo;
       </a>
     </li>
   </ul>
