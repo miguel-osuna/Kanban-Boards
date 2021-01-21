@@ -11,7 +11,6 @@ class TestDashboard(ViewTestMixin):
         response = self.client.get(url_for("admin.dashboard"))
         assert bytes("User".encode("utf-8")) in response.data
 
-
 class TestUsers(ViewTestMixin):
     def test_index_page(self):
         """ Users index page renders successfully. """

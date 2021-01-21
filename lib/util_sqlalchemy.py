@@ -29,7 +29,7 @@ class AwareDateTime(TypeDecorator):
 class ResourceMixin(object):
     # Keep track when records are created and updated
     created_on = db.Column(AwareDateTime(), default=tzaware_datetime)
-    update_on = db.Column(
+    updated_on = db.Column(
         AwareDateTime(), default=tzaware_datetime, onupdate=tzaware_datetime
     )
 
