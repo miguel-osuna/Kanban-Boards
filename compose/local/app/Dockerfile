@@ -1,30 +1,33 @@
 # Pull base image
-FROM python:3.8.7-slim-buster
+FROM python:3.9.16-slim-buster
 LABEL maintainer="Miguel Osuna <osuna.angulo.miguel@gmail.com>"
 
-# Set environment variables 
 # Python won't write .pyc files 
 ENV PYTHONDONTWRITEBYTECODE 1
 # Python buffered gives familiar output to console
 ENV PYTHONUNBUFFERED 1
+# Dependencies for building Python packages
+ENV BUILD_DEPS="build-essential"
+# Dependencies for psycopg2 and translation
+ENV APP_DEPS="libpq-dev gettext curl"
 
 RUN apt-get update \
-    # dependencies for building Python packages
-    && apt-get install -y build-essential \
-    # psycopg2 dependencies
-    && apt-get install -y libpq-dev \
-    # Translations dependencies
-    && apt-get install -y gettext \
-    # cleaning up unused files
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt-get install -y ${BUILD_DEPS} ${APP_DEPS} --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \ 
     && rm -rf /usr/share/doc \ 
-    && rm -rf /usr/share/man
+    && rm -rf /usr/share/man \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt-get clean
 
-# Install dependencies and remove the requirements folder when done
-COPY ./requirements /requirements
-RUN pip install -r /requirements/local.txt \
-    && rm -rf /requirements
+# Copy dependencies
+COPY Pipfile Pipfile
+COPY Pipfile.lock Pipfile.lock
+RUN pip install --upgrade pip
+RUN pip install pipenv
+
+# Install dependencies
+RUN pipenv install --ignore-pipfile --system \
+    && pipenv install --ignore-pipfile --dev --system
 
 # Copy the start bash scripts and change their permissions
 COPY ./compose/local/app/start.sh /start.sh

@@ -104,7 +104,9 @@ celerybeat.pid
 
 # Environments
 .env
+.env*
 .envs/*
+!.env.examples/*
 .venv
 env/
 venv/
@@ -131,4 +133,16 @@ dmypy.json
 .pyre/
 
 # VS Code configuration files
-**/.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### App #######################################################################
+.webpack_cache/
+public/*
+!public/.keep
+
+docker-compose.override.yml

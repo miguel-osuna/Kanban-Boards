@@ -1,0 +1,42 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "==2.2.2"
+celery = "==5.2.7"
+flower = "==1.2.0"
+redis = "==4.4.0"
+werkzeug = "==2.2.2"
+gunicorn = "==20.1.0"
+flask-sqlalchemy = "==3.0.2"
+sqlalchemy = "==1.4.45"
+psycopg2-binary = "==2.9.5"
+flask-migrate = "==4.0.0"
+flask-wtf = "==1.0.1"
+wtforms = "==3.0.1"
+wtforms-components = "==0.10.5"
+wtforms-alchemy = "==0.18.0"
+flask-login = "==0.6.2"
+flask-caching = "==2.0.1"
+flask-debugtoolbar = "==0.13.1"
+flask-mail = "==0.9.1"
+flask-static-digest = "==0.2.1"
+flask-babel = "==2.0.0"
+
+[dev-packages]
+ipdb = "==0.13.11"
+bpython = "==0.23"
+faker = "==15.3.4"
+pytest = "==7.2.0"
+pytest-sugar = "==0.9.6"
+pytest-cov = "==4.0.0"
+pytest-flask = "==1.2.0"
+flake8 = "==6.0.0"
+flake8-isort = "==5.0.3"
+black = "==22.12.0"
+mypy = "==0.991"
+
+[requires]
+python_version = "3.9"
