@@ -11,12 +11,12 @@ from kanban_boards.blueprints.user.models import User
 
 
 @click.group()
-def dbsetup():
+def db():
     """ Run PostgreSQL related tasks. """
     pass
 
 
-@dbsetup.command()
+@db.command()
 @click.option(
     "--with-testdb/--no-with-testdb", default=False, help="Create a test db too?"
 )
@@ -44,7 +44,7 @@ def init(with_testdb):
     return None
 
 
-@dbsetup.command()
+@db.command()
 @with_appcontext
 def seed():
     """
@@ -70,7 +70,7 @@ def seed():
     return User(**params).save()
 
 
-@dbsetup.command()
+@db.command()
 @click.option(
     "--with-testdb/--no-with-testdb", default=False, help="Create a test db too?"
 )

@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:3.9.16-slim-buster
+FROM python:3.11.1-slim-buster
 LABEL maintainer="Miguel Osuna <osuna.angulo.miguel@gmail.com>"
 
 # Python won't write .pyc files 

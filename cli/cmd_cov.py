@@ -6,7 +6,7 @@ from flask.cli import with_appcontext
 
 
 @click.command()
-@click.argument("path", default="kanban_boards")
+@click.argument("path")
 @with_appcontext
 def cov(path):
     """
@@ -15,5 +15,5 @@ def cov(path):
     :param path: Test coverage path
     :return: Subprocess call result
     """
-    cmd = "py.test --cov-report term-missing --cov {0}".format(path)
+    cmd = "py.test --cov test --cov lib/ --cov-report term-missing".format(path)
     return subprocess.call(cmd, shell=True)
